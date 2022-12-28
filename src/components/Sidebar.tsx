@@ -9,6 +9,7 @@ import { RiExchangeDollarLine } from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io";
 import Logo from "../assets/logo_crypto.png";
+import ProfileImage from "../assets/profile-image.jpg";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function Sidebar() {
         <span className="logo_name">CryptoVision</span>
       </div>
       <ul className="nav-links">
-        <li>
+        <li className={pathMatchRoute("/") ? "active" : "notActive"}>
           <p onClick={() => navigate("/")}>
             <i>
               <MdOutlineDashboard size={28} />
@@ -52,8 +53,11 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
-          <div className="iocn-link">
+        <li
+          className={
+            pathMatchRoute("/bitcoin-fundamentals") ? "active" : "notActive"
+          }>
+          <div className="icon-link">
             <p onClick={() => navigate("/bitcoin-fundamentals")}>
               <i>
                 <TbCurrencyBitcoin size={28} />
@@ -79,8 +83,11 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
-          <div className="iocn-link">
+        <li
+          className={
+            pathMatchRoute("/main-indicators") ? "active" : "notActive"
+          }>
+          <div className="icon-link">
             <p onClick={() => navigate("/main-indicators")}>
               <i>
                 <AiOutlineLineChart size={28} />
@@ -106,8 +113,11 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
-          <div className="iocn-link">
+        <li
+          className={
+            pathMatchRoute("/economic-indicators") ? "active" : "notActive"
+          }>
+          <div className="icon-link">
             <p onClick={() => navigate("/economic-indicators")}>
               <i>
                 <BsBank size={28} />
@@ -154,8 +164,9 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
-          <div className="iocn-link">
+        <li
+          className={pathMatchRoute("/transactions") ? "active" : "notActive"}>
+          <div className="icon-link">
             <p onClick={() => navigate("/transactions")}>
               <i>
                 <TbArrowsRightLeft size={28} />
@@ -181,7 +192,7 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
+        <li className={pathMatchRoute("/mining") ? "active" : "notActive"}>
           <p onClick={() => navigate("/mining")}>
             <i>
               <GiMining size={28} />
@@ -194,7 +205,7 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
+        <li className={pathMatchRoute("/arbitrage") ? "active" : "notActive"}>
           <p onClick={() => navigate("/arbitrage")}>
             <i>
               <RiExchangeDollarLine size={28} />
@@ -207,7 +218,7 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
+        <li className={pathMatchRoute("/news") ? "active" : "notActive"}>
           <p onClick={() => navigate("/news")}>
             <i>
               <ImNewspaper size={28} />
@@ -220,7 +231,7 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li>
+        <li className={pathMatchRoute("/settings") ? "active" : "notActive"}>
           <p onClick={() => navigate("/settings")}>
             <i>
               <FiSettings size={28} />
@@ -236,11 +247,11 @@ function Sidebar() {
         <li>
           <div className="profile-details">
             <div className="profile-content">
-              <img src="image/profile.jpg" alt="profileImg" />
+              <img src={ProfileImage} alt="Profile" />
             </div>
             <div className="name-job">
-              <div className="profile_name">Prem Shahi</div>
-              <div className="job">Web Desginer</div>
+              <div className="profile_name">Nancy</div>
+              <div className="job">Web Designer</div>
             </div>
             <i className="bx bx-log-out"></i>
           </div>
