@@ -7,6 +7,7 @@ import { GiMining } from "react-icons/gi";
 import { ImNewspaper } from "react-icons/im";
 import { RiExchangeDollarLine } from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
+import { IoIosArrowDown } from "react-icons/io";
 import Logo from "../assets/logo_crypto.png";
 
 function Sidebar() {
@@ -25,7 +26,7 @@ function Sidebar() {
   };
 
   const showMenu = (e: any) => {
-    let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+    let arrowParent = e.target.parentElement.parentElement.parentElement; //selecting main parent of arrow
     arrowParent.classList.toggle("showMenu");
   };
 
@@ -59,7 +60,9 @@ function Sidebar() {
               </i>
               <span className="link_name">Bitcoin Fundamentals</span>
             </p>
-            <i className="bx bxs-chevron-down arrow" onClick={showMenu}></i>
+            <i className="arrow">
+              <IoIosArrowDown size={28} onClick={showMenu} />
+            </i>
           </div>
           <ul className="sub-menu">
             <li>
@@ -84,7 +87,9 @@ function Sidebar() {
               </i>
               <span className="link_name">Main Indicators</span>
             </p>
-            <i className="bx bxs-chevron-down arrow" onClick={showMenu}></i>
+            <i className="arrow">
+              <IoIosArrowDown size={28} onClick={showMenu} />
+            </i>
           </div>
           <ul className="sub-menu">
             <li>
@@ -109,7 +114,9 @@ function Sidebar() {
               </i>
               <span className="link_name">Economic Indicators</span>
             </p>
-            <i className="bx bxs-chevron-down arrow" onClick={showMenu}></i>
+            <i className="arrow">
+              <IoIosArrowDown size={28} onClick={showMenu} />
+            </i>
           </div>
           <ul className="sub-menu">
             <li>
@@ -155,7 +162,9 @@ function Sidebar() {
               </i>
               <span className="link_name">Transactions</span>
             </p>
-            <i className="bx bxs-chevron-down arrow" onClick={showMenu}></i>
+            <i className="arrow">
+              <IoIosArrowDown size={28} onClick={showMenu} />
+            </i>
           </div>
           <ul className="sub-menu">
             <li>
