@@ -6,25 +6,10 @@ function Home() {
     let divsToDelete: any = document.querySelectorAll(
       "#tradingview_widget_wrapper"
     );
-    let tradingViewLogosToDelete: any = document.querySelectorAll(
-      ".tv-embed-widget-wrapper"
-    );
 
-    console.log(divsToDelete);
     if (divsToDelete) {
       divsToDelete.forEach((div: any) => {
         const children = div.children[1];
-        if (children) {
-          children.remove();
-        }
-      });
-    }
-
-    console.log(tradingViewLogosToDelete);
-    if (tradingViewLogosToDelete) {
-      tradingViewLogosToDelete.forEach((div: any) => {
-        const children = div.children[1].lastChild;
-        console.log(children);
         if (children) {
           children.remove();
         }
@@ -39,18 +24,15 @@ function Home() {
           <MiniChart
             colorTheme="dark"
             width="100%"
-            symbol="BTC/USD"
-          ></MiniChart>
+            symbol="BTC/USD"></MiniChart>
           <MiniChart
             colorTheme="dark"
             width="100%"
-            symbol="ETH/USD"
-          ></MiniChart>
+            symbol="ETH/USD"></MiniChart>
           <MiniChart
             colorTheme="dark"
             width="100%"
-            symbol="BNB/USD"
-          ></MiniChart>
+            symbol="BNB/USD"></MiniChart>
         </div>
       </div>
     </section>
