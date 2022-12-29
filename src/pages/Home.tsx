@@ -36,20 +36,23 @@ function Home() {
             theme="dark"
             width="100%"
             symbol="BTC/USD"
-            height={550}></AdvancedRealTimeChart>
+            height={550}
+          ></AdvancedRealTimeChart>
         </div>
         <div className="mx-auto grid w-full grid-cols-1 gap-4 p-8 xl:grid-cols-3 xl:gap-10">
           <div className="xl:col-span-1">
             <EconomicCalendar
               colorTheme="dark"
               width="100%"
-              height={600}></EconomicCalendar>
+              height={600}
+            ></EconomicCalendar>
           </div>
           <div className="xl:col-span-2">
             <CryptoCurrencyMarket
               colorTheme="dark"
               width="100%"
-              height={600}></CryptoCurrencyMarket>
+              height={600}
+            ></CryptoCurrencyMarket>
           </div>
         </div>
       </div>
