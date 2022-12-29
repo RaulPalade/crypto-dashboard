@@ -1,11 +1,37 @@
 import ChartCard from "../components/ChartCard";
 import ChartToolbar from "../components/ChartToolbar";
-import CustomChart from "../components/CustomChart";
+import CustomChart, { ChartData } from "../components/CustomChart";
+import CryptoCompareApi from "../api/CryptoCompareApi";
+import { useEffect, useState } from "react";
 
 function MainIndicators() {
-  const chartData = {
-    values: [1, 3, 1, 2, 6, 1],
-    labels: ["1", "3", "1", "2", "6", "1"],
+  const [chartData, setChardData] = useState<ChartData>({
+    values: [],
+    labels: [],
+  });
+
+  const mockedChartData = {
+    values: [123, 41, 42, 14, 1],
+    labels: ["1", "2", "3", "4", "5"],
+  };
+
+  useEffect(() => {
+    if (chartData.values.length == 0) {
+      fetchData();
+    }
+  });
+
+  const fetchData = async () => {
+    try {
+      const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
+        "BTC",
+        "USD",
+        30
+      );
+      setChardData(data);
+    } catch (error) {
+      // handle error
+    }
   };
 
   return (
