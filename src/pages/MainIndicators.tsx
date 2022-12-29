@@ -1,6 +1,6 @@
 import ChartCard from "../components/ChartCard";
-import ChartToolbar from "../components/ChartToolbar";
-import CustomChart, { ChartData } from "../components/CustomChart";
+import ChartSmaEmaContainer from "../components/ChartSmaEmaContainer";
+import { ChartData } from "../components/ChartSingleLine";
 import CryptoCompareApi from "../api/CryptoCompareApi";
 import { useEffect, useState } from "react";
 
@@ -11,16 +11,9 @@ function MainIndicators() {
     legendLabel: "",
   });
 
-  const mockedChartData = {
-    values: [123, 41, 42, 14, 1],
-    labels: ["1", "2", "3", "4", "5"],
-  };
-
   useEffect(() => {
-    if (chartData.values.length == 0) {
-      fetchData();
-    }
-  });
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -31,7 +24,7 @@ function MainIndicators() {
       );
       setChardData(data);
     } catch (error) {
-      // handle error
+      console.log(error);
     }
   };
 
@@ -39,8 +32,7 @@ function MainIndicators() {
     <section className="home-section">
       <div className="home-content">
         <ChartCard>
-          <ChartToolbar />
-          <CustomChart {...chartData} />
+          <ChartSmaEmaContainer {...chartData} />
         </ChartCard>
       </div>
     </section>

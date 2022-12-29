@@ -7,7 +7,7 @@ export interface ChartData {
   legendLabel: string;
 }
 
-function CustomChart(data: ChartData) {
+function ChartSingleLine(data: ChartData) {
   const chartData = {
     labels: data.labels,
     datasets: [
@@ -48,4 +48,4 @@ function CustomChart(data: ChartData) {
   );
 }
 
-export default CustomChart;
+export default ChartSingleLine;
