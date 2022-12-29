@@ -14,8 +14,8 @@ function ChartSingleLine(data: ChartData) {
       {
         label: data.legendLabel,
         data: data.values,
-        backgroundColor: "rgba(81, 74, 248, 1)",
-        borderColor: "rgba(81, 74, 248, 1)",
+        backgroundColor: "rgba(234, 118, 150, 1)",
+        borderColor: "rgba(234, 118, 150, 1)",
         borderWidth: 1,
         pointBackgroundColor: "#fff",
         pointRadius: 2,
