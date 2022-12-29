@@ -26,10 +26,26 @@ function Home() {
     <section className="home-section">
       <div className="home-content flex w-full flex-col">
         <div className="mx-auto grid w-full grid-cols-1 gap-4 p-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-10">
-          <MiniChart colorTheme="dark" symbol="BTC/USD" autosize></MiniChart>
-          <MiniChart colorTheme="dark" symbol="ETH/USD" autosize></MiniChart>
-          <MiniChart colorTheme="dark" symbol="BNB/USD" autosize></MiniChart>
-          <MiniChart colorTheme="dark" symbol="MATIC/USD" autosize></MiniChart>
+          <MiniChart
+            colorTheme="dark"
+            symbol="BINANCE:BTCUSD"
+            autosize
+          ></MiniChart>
+          <MiniChart
+            colorTheme="dark"
+            symbol="BINANCE:ETHUSD"
+            autosize
+          ></MiniChart>
+          <MiniChart
+            colorTheme="dark"
+            symbol="BINANCE:BNBUSD"
+            autosize
+          ></MiniChart>
+          <MiniChart
+            colorTheme="dark"
+            symbol="BINANCE:MATICUSD"
+            autosize
+          ></MiniChart>
         </div>
         <div className="mx-auto w-full pl-8 pr-8">
           <AdvancedRealTimeChart
