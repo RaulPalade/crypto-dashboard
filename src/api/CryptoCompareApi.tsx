@@ -43,6 +43,7 @@ class CryptoCompareApi {
       const chardData: ChartData = {
         values: values,
         labels: labels,
+        legendLabel: fromSymbol,
       };
       return chardData;
     } catch (error) {

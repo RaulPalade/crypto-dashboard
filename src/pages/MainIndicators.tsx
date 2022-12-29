@@ -8,6 +8,7 @@ function MainIndicators() {
   const [chartData, setChardData] = useState<ChartData>({
     values: [],
     labels: [],
+    legendLabel: "",
   });
 
   const mockedChartData = {

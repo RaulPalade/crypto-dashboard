@@ -4,6 +4,7 @@ import { Chart } from "react-chartjs-2";
 export interface ChartData {
   values: number[];
   labels: string[];
+  legendLabel: string;
 }
 
 function CustomChart(data: ChartData) {
@@ -11,13 +12,13 @@ function CustomChart(data: ChartData) {
     labels: data.labels,
     datasets: [
       {
+        label: data.legendLabel,
         data: data.values,
         backgroundColor: "rgba(81, 74, 248, 1)",
         borderColor: "rgba(81, 74, 248, 1)",
         borderWidth: 1,
         pointBackgroundColor: "#fff",
-        pointRadius: 0,
-        lineTension: 0,
+        pointRadius: 2,
       },
     ],
   };
@@ -26,17 +27,17 @@ function CustomChart(data: ChartData) {
       type="line"
       data={chartData}
       options={{
-        plugins: { legend: { display: false } },
+        plugins: { legend: { display: true } },
         scales: {
           x: {
-            display: false,
+            display: true,
             grid: {
               display: false,
             },
           },
 
           y: {
-            display: false,
+            display: true,
             grid: {
               display: false,
             },
