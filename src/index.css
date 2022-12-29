@@ -246,7 +246,7 @@ code {
 }
 .home-section {
   position: relative;
-  background: #1E222D;
+  background: #1e222d;
   /* height: 100vh; */
   left: 340px;
   width: calc(100% - 260px);
@@ -258,8 +258,11 @@ code {
   width: calc(100% - 78px);
 }
 .home-content {
+  /* border-width: 5px; */
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   flex-wrap: wrap;
 }
 .home-section .home-content .bx-menu,
