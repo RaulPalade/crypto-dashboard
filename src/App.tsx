@@ -13,6 +13,7 @@ import News from "./pages/News";
 import Settings from "./pages/Settings";
 import OnChainIndicators from "./pages/OnChainIndicators";
 import Bitcoin2YearMa from "./pages/bitcoin_basics/Bitcoin2YearMA";
+import Bitcoin200WeekMAHeatmap from "./pages/bitcoin_basics/Bitcoin200WeekMAHeatmap";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route
             path="/bitcoin-basics/bitcoin-2-year-ma"
             element={<Bitcoin2YearMa />}
+          />
+          <Route
+            path="/bitcoin-basics/bitcoin-200-week-ma"
+            element={<Bitcoin200WeekMAHeatmap />}
           />
           <Route path="/market-indicators" element={<MarketIndicators />} />
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />

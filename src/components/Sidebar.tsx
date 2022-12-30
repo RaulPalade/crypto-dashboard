@@ -79,7 +79,11 @@ function Sidebar() {
               </p>
             </li>
             <li>
-              <p>200 Week Moving Average Heatmap</p>
+              <p
+                onClick={() => navigate("/bitcoin-basics/bitcoin-200-week-ma")}
+              >
+                200 Week Moving Average Heatmap
+              </p>
             </li>
             <li>
               <p>Stock-to-Flow Model</p>
