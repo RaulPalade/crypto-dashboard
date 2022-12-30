@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Description from "../components/Description";
 
-function MainIndicators() {
+function MarketIndicators() {
   const [chartData, setChardData] = useState<ChartData>({
     values: [],
     labels: [],
@@ -69,4 +69,4 @@ function MainIndicators() {
   );
 }
 
-export default MainIndicators;
+export default MarketIndicators;

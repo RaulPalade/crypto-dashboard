@@ -56,7 +56,8 @@ function Sidebar() {
         <li
           className={
             pathMatchRoute("/bitcoin-fundamentals") ? "active" : "notActive"
-          }>
+          }
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/bitcoin-fundamentals")}>
               <i>
@@ -85,14 +86,15 @@ function Sidebar() {
         </li>
         <li
           className={
-            pathMatchRoute("/main-indicators") ? "active" : "notActive"
-          }>
+            pathMatchRoute("/market-indicators") ? "active" : "notActive"
+          }
+        >
           <div className="icon-link">
-            <p onClick={() => navigate("/main-indicators")}>
+            <p onClick={() => navigate("/market-indicators")}>
               <i>
                 <AiOutlineLineChart size={28} />
               </i>
-              <span className="link_name">Main Indicators</span>
+              <span className="link_name">Market Indicators</span>
             </p>
             <i className="arrow">
               <IoIosArrowDown size={28} onClick={showMenu} />
@@ -100,7 +102,7 @@ function Sidebar() {
           </div>
           <ul className="sub-menu">
             <li>
-              <p className="link_name">Main Indicators</p>
+              <p className="link_name">Market Indicators</p>
             </li>
             <li>
               <p>Web Design</p>
@@ -116,7 +118,8 @@ function Sidebar() {
         <li
           className={
             pathMatchRoute("/economic-indicators") ? "active" : "notActive"
-          }>
+          }
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/economic-indicators")}>
               <i>
@@ -165,7 +168,8 @@ function Sidebar() {
           </ul>
         </li>
         <li
-          className={pathMatchRoute("/transactions") ? "active" : "notActive"}>
+          className={pathMatchRoute("/transactions") ? "active" : "notActive"}
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/transactions")}>
               <i>
