@@ -7,18 +7,24 @@ export interface ChartData {
   legendLabel: string;
 }
 
-function ChartSingleLine(data: ChartData) {
+export interface ChartConfig {
+  scale: any;
+}
+
+type ChartSingleLineProps = { data: ChartData } & { config: ChartConfig };
+
+function ChartSingleLine(props: ChartSingleLineProps) {
   const chartData = {
-    labels: data.labels,
+    labels: props.data.labels,
     datasets: [
       {
-        label: data.legendLabel,
-        data: data.values,
+        label: props.data.legendLabel,
+        data: props.data.values,
         backgroundColor: "rgba(234, 118, 150, 1)",
         borderColor: "rgba(234, 118, 150, 1)",
         borderWidth: 1,
         pointBackgroundColor: "#fff",
-        pointRadius: 2,
+        pointRadius: 0.1,
       },
     ],
   };
@@ -38,6 +44,7 @@ function ChartSingleLine(data: ChartData) {
 
           y: {
             display: true,
+            type: props.config.scale,
             grid: {
               display: false,
             },

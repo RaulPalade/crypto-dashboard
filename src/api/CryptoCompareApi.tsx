@@ -31,7 +31,7 @@ class CryptoCompareApi {
   ): Promise<any> {
     try {
       const response = await this.api.get(
-        `v2/histoday?fsym=${fromSymbol}&tsym=${toSymbol}&limit=30`
+        `v2/histoday?fsym=${fromSymbol}&tsym=${toSymbol}&limit=${limit}`
       );
       console.log(response.data.Data.Data);
       const values: number[] = response.data.Data.Data.map(

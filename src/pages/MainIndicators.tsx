@@ -22,7 +22,7 @@ function MainIndicators() {
       const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
         "BTC",
         "USD",
-        30
+        2000
       );
       setChardData(data);
     } catch (error) {
