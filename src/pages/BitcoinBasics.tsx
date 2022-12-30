@@ -1,11 +1,11 @@
-function BitcoinFundamentals() {
+function BitcoinBasics() {
   return (
     <section className="home-section">
       <div className="home-content">
-        <p>Bitcoint Fundamentals</p>
+        <p>Bitcoint Basics</p>
       </div>
     </section>
   );
 }
 
-export default BitcoinFundamentals;
+export default BitcoinBasics;

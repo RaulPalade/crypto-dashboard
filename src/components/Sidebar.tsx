@@ -8,6 +8,8 @@ import { ImNewspaper } from "react-icons/im";
 import { RiExchangeDollarLine } from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io";
+import { SiHiveBlockchain } from "react-icons/si";
+
 import Logo from "../assets/logo_crypto.png";
 import ProfileImage from "../assets/profile-image.jpg";
 
@@ -54,16 +56,14 @@ function Sidebar() {
           </ul>
         </li>
         <li
-          className={
-            pathMatchRoute("/bitcoin-fundamentals") ? "active" : "notActive"
-          }
+          className={pathMatchRoute("/bitcoin-Basics") ? "active" : "notActive"}
         >
           <div className="icon-link">
-            <p onClick={() => navigate("/bitcoin-fundamentals")}>
+            <p onClick={() => navigate("/bitcoin-basics")}>
               <i>
                 <TbCurrencyBitcoin size={28} />
               </i>
-              <span className="link_name">Bitcoin Fundamentals</span>
+              <span className="link_name">Bitcoin Basics</span>
             </p>
             <i className="arrow">
               <IoIosArrowDown size={28} onClick={showMenu} />
@@ -71,16 +71,31 @@ function Sidebar() {
           </div>
           <ul className="sub-menu">
             <li>
-              <p className="link_name">Bitcoin Fundamentals</p>
+              <p className="link_name">Bitcoin Basics</p>
             </li>
             <li>
-              <p>HTML & CSS</p>
+              <p>Bitcoin Investor Tool: 2-year MA Multiplier</p>
             </li>
             <li>
-              <p>JavaScript</p>
+              <p>200 Week Moving Average Heatmap</p>
             </li>
             <li>
-              <p>PHP & MySQL</p>
+              <p>Stock-to-Flow Model</p>
+            </li>
+            <li>
+              <p>Fear And Greed Index</p>
+            </li>
+            <li>
+              <p>Pi Cycle Top Indicator</p>
+            </li>
+            <li>
+              <p>Bitcoin Profitable Days</p>
+            </li>
+            <li>
+              <p>Bitcoin Rainbow Price Chart Indicator</p>
+            </li>
+            <li>
+              <p>Puell Multiple</p>
             </li>
           </ul>
         </li>
@@ -105,13 +120,65 @@ function Sidebar() {
               <p className="link_name">Market Indicators</p>
             </li>
             <li>
-              <p>Web Design</p>
+              <p>Running ROI</p>
             </li>
             <li>
-              <p>Login Form</p>
+              <p>Monthly returns</p>
             </li>
             <li>
-              <p>Card Design</p>
+              <p>Average Daily Returns</p>
+            </li>
+            <li>
+              <p>Monthly Average ROI</p>
+            </li>
+            <li>
+              <p>ROI Bands</p>
+            </li>
+            <li>
+              <p>Bull Market Support Bands</p>
+            </li>
+            <li>
+              <p>Long Term Moving Average</p>
+            </li>
+            <li>
+              <p>Price Drowdown From ATH</p>
+            </li>
+          </ul>
+        </li>
+        <li
+          className={
+            pathMatchRoute("/on-chain-indicators") ? "active" : "notActive"
+          }
+        >
+          <div className="icon-link">
+            <p onClick={() => navigate("/on-chain-indicators")}>
+              <i>
+                <SiHiveBlockchain size={28} />
+              </i>
+              <span className="link_name">Onchain Indicators</span>
+            </p>
+            <i className="arrow">
+              <IoIosArrowDown size={28} onClick={showMenu} />
+            </i>
+          </div>
+          <ul className="sub-menu">
+            <li>
+              <p className="link_name">OnChain Indicators</p>
+            </li>
+            <li>
+              <p>ROHDL Ratio</p>
+            </li>
+            <li>
+              <p>Net Unrealized Profil/Loss</p>
+            </li>
+            <li>
+              <p>Reserve Risk</p>
+            </li>
+            <li>
+              <p>Active Addess Sentiment Indicator</p>
+            </li>
+            <li>
+              <p>Realized Price</p>
             </li>
           </ul>
         </li>
@@ -139,10 +206,10 @@ function Sidebar() {
               <p>Real GDP</p>
             </li>
             <li>
-              <p>Real GDP per Capita</p>
+              <p>Real GDP per Capital</p>
             </li>
             <li>
-              <p>Treasyre Yield</p>
+              <p>Treasure Yield</p>
             </li>
             <li>
               <p>Federal Funds (interest) Rate</p>

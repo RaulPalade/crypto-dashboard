@@ -3,7 +3,7 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 
 import Home from "./pages/Home";
-import BitcoinFundamentals from "./pages/BitcoinFundamentals";
+import BitcoinBasics from "./pages/BitcoinBasics";
 import MarketIndicators from "./pages/MarketIndicators";
 import EconomicIndicators from "./pages/EconomicIndicators";
 import Transactions from "./pages/Transactions";
@@ -11,6 +11,7 @@ import Mining from "./pages/Mining";
 import Arbitrage from "./pages/Arbitrage";
 import News from "./pages/News";
 import Settings from "./pages/Settings";
+import OnChainIndicators from "./pages/OnChainIndicators";
 
 function App() {
   return (
@@ -19,11 +20,9 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/bitcoin-fundamentals"
-            element={<BitcoinFundamentals />}
-          />
+          <Route path="/bitcoin-basics" element={<BitcoinBasics />} />
           <Route path="/market-indicators" element={<MarketIndicators />} />
+          <Route path="/on-chain-indicators" element={<OnChainIndicators />} />
           <Route path="/economic-indicators" element={<EconomicIndicators />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/mining" element={<Mining />} />
