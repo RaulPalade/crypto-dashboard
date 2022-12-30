@@ -21,8 +21,7 @@ function MarketIndicators() {
     try {
       const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
         "BTC",
-        "USD",
-        2000
+        "USD"
       );
       setChardData(data);
     } catch (error) {

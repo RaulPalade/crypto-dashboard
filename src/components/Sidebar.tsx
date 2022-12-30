@@ -74,7 +74,9 @@ function Sidebar() {
               <p className="link_name">Bitcoin Basics</p>
             </li>
             <li>
-              <p>Bitcoin Investor Tool: 2-year MA Multiplier</p>
+              <p onClick={() => navigate("/bitcoin-basics/bitcoin-2-year-ma")}>
+                Bitcoin Investor Tool: 2-year MA Multiplier
+              </p>
             </li>
             <li>
               <p>200 Week Moving Average Heatmap</p>

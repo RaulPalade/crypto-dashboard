@@ -12,6 +12,7 @@ import Arbitrage from "./pages/Arbitrage";
 import News from "./pages/News";
 import Settings from "./pages/Settings";
 import OnChainIndicators from "./pages/OnChainIndicators";
+import Bitcoin2YearMa from "./pages/bitcoin_basics/Bitcoin2YearMA";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/bitcoin-basics" element={<BitcoinBasics />} />
+          <Route
+            path="/bitcoin-basics/bitcoin-2-year-ma"
+            element={<Bitcoin2YearMa />}
+          />
           <Route path="/market-indicators" element={<MarketIndicators />} />
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />
           <Route path="/economic-indicators" element={<EconomicIndicators />} />

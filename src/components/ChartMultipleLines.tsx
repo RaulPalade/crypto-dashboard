@@ -1,33 +1,19 @@
 import "chart.js/auto";
+import { ChartDataset } from "chart.js";
 import { Chart } from "react-chartjs-2";
+import { ChartConfig, ChartData } from "./ChartSingleLine";
 
-export interface ChartData {
-  values: number[];
-  labels: string[];
-  legendLabel: string;
-}
-
-export interface ChartConfig {
-  scale: any;
-}
-
-type ChartSingleLineProps = { data: ChartData } & { config: ChartConfig };
+type ChartMultipleLines = { labels: string[] } & {
+  datasets: ChartDataset[];
+} & {
+  config: ChartConfig;
+};
 const numberOfYearToShow = 16;
 
-function ChartSingleLine(props: ChartSingleLineProps) {
+function ChartMultipleLines(props: ChartMultipleLines) {
   const chartData = {
-    labels: props.data.labels,
-    datasets: [
-      {
-        label: props.data.legendLabel,
-        data: props.data.values,
-        backgroundColor: "rgba(234, 118, 150, 1)",
-        borderColor: "rgba(234, 118, 150, 1)",
-        borderWidth: 1,
-        pointBackgroundColor: "#fff",
-        pointRadius: 0.1,
-      },
-    ],
+    labels: props.labels,
+    datasets: props.datasets,
   };
   return (
     <Chart
@@ -60,4 +46,4 @@ function ChartSingleLine(props: ChartSingleLineProps) {
   );
 }
 
-export default ChartSingleLine;
+export default ChartMultipleLines;

@@ -27,25 +27,39 @@ class CryptoCompareApi {
   public async getDailyPairOHLCV(
     fromSymbol: string,
     toSymbol: string,
-    limit: number
-  ): Promise<any> {
+    limit: number = 1500, // 1500 * 3 calls = 12 years of data
+    recursiveCalls: number = 2,
+    chartData: ChartData = { values: [], labels: [], legendLabel: fromSymbol },
+    toTs?: number
+  ): Promise<ChartData> {
     try {
       const response = await this.api.get(
-        `v2/histoday?fsym=${fromSymbol}&tsym=${toSymbol}&limit=${limit}`
+        `v2/histoday?fsym=${fromSymbol}&tsym=${toSymbol}&limit=${limit}${
+          toTs ? `&toTs=${toTs}` : ""
+        }`
       );
-      console.log(response.data.Data.Data);
       const values: number[] = response.data.Data.Data.map(
         (obj: { close: number }) => obj.close
       );
       const labels: string[] = response.data.Data.Data.map(
         (obj: { time: number }) => this.convertTimestampToDate(obj.time)
       );
-      const chardData: ChartData = {
-        values: values,
-        labels: labels,
-        legendLabel: fromSymbol,
-      };
-      return chardData;
+      chartData.values.unshift(...values);
+      chartData.labels.unshift(...labels);
+      if (values.length === 0 || recursiveCalls <= 0) {
+        return chartData;
+      }
+      const earliestTimestamp = Math.min(
+        ...response.data.Data.Data.map((obj: { time: number }) => obj.time)
+      );
+      return this.getDailyPairOHLCV(
+        fromSymbol,
+        toSymbol,
+        limit,
+        recursiveCalls - 1,
+        chartData,
+        earliestTimestamp
+      );
     } catch (error) {
       console.log(`Error while getting getDailyPairOHLCV: ${error}`);
       throw error;
