@@ -4,14 +4,14 @@ import { ChartData } from "./ChartSingleLineNoGrid";
 
 function ChartSmaEmaContainer(data: ChartData) {
   const [viewOption, setViewOption] = useState(0);
-  const [scaleOption, setScaleOption] = useState(0);
+  const [scaleOption, setScaleOption] = useState(1);
   const [chartData, setChartData] = useState<ChartData>({
     values: [],
     labels: [],
     legendLabel: "",
   });
   const [chartConfig, setChartConfig] = useState<ChartConfig>({
-    scale: "linear",
+    scale: "logarithmic",
   });
 
   useEffect(() => {

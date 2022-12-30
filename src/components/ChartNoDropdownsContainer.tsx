@@ -9,11 +9,11 @@ type ChartNoDropdownsContainerProps = { labels: string[] } & {
 };
 function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
   const [viewOption, setViewOption] = useState(0);
-  const [scaleOption, setScaleOption] = useState(0);
+  const [scaleOption, setScaleOption] = useState(1);
   const [chartLabels, setChartLabels] = useState<string[]>([]);
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
   const [chartConfig, setChartConfig] = useState<ChartConfig>({
-    scale: "linear",
+    scale: "logarithmic",
   });
 
   useEffect(() => {
