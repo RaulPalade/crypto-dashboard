@@ -23,9 +23,9 @@ function Bitcoin2YearMa() {
         "BTC",
         "USD",
         1500,
-        1
+        2
       );
-      setChartLabels(data.labels);
+      setChartLabels(data.labels.slice(1000));
       const processedChartData2MA: ChartData = {
         values: calculateTwoYearMA(data.values),
         labels: data.labels,
@@ -41,7 +41,7 @@ function Bitcoin2YearMa() {
       const datasets: ChartDataset[] = [];
       datasets.push({
         label: "BTC PRICE",
-        data: data.values,
+        data: data.values.slice(1000),
         backgroundColor: "rgba(30, 34, 45, 1)",
         borderColor: "rgba(30, 34, 45, 1)",
         borderWidth: 1,
@@ -51,7 +51,7 @@ function Bitcoin2YearMa() {
 
       datasets.push({
         label: processedChartData2MA.legendLabel,
-        data: processedChartData2MA.values,
+        data: processedChartData2MA.values.slice(1000),
         backgroundColor: "rgba(41, 115, 115, 1)",
         borderColor: "rgba(41, 115, 115, 1)",
         borderWidth: 1,
@@ -61,7 +61,7 @@ function Bitcoin2YearMa() {
 
       datasets.push({
         label: processedChartData2MAx5.legendLabel,
-        data: processedChartData2MAx5.values,
+        data: processedChartData2MAx5.values.slice(1000),
         backgroundColor: "rgba(220, 0, 0, 1)",
         borderColor: "rgba(220, 0, 0, 1)",
         borderWidth: 1,
