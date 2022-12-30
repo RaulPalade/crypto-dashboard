@@ -1,6 +1,6 @@
 import ChartCard from "../components/ChartCard";
 import ChartSmaEmaContainer from "../components/ChartSmaEmaContainer";
-import { ChartData } from "../components/ChartSingleLine";
+import { ChartData } from "../components/ChartSingleLineNoGrid";
 import CryptoCompareApi from "../api/CryptoCompareApi";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";

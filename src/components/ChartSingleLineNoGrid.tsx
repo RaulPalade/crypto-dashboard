@@ -1,6 +1,9 @@
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js";
+import zoomPlugin from "chartjs-plugin-zoom";
 
+ChartJS.register(zoomPlugin);
 export interface ChartData {
   values: number[];
   labels: string[];
@@ -14,7 +17,7 @@ export interface ChartConfig {
 type ChartSingleLineProps = { data: ChartData } & { config: ChartConfig };
 const numberOfYearToShow = 16;
 
-function ChartSingleLine(props: ChartSingleLineProps) {
+function ChartSingleLineNoGrid(props: ChartSingleLineProps) {
   const chartData = {
     labels: props.data.labels,
     datasets: [
@@ -34,7 +37,25 @@ function ChartSingleLine(props: ChartSingleLineProps) {
       type="line"
       data={chartData}
       options={{
-        plugins: { legend: { display: true } },
+        responsive: true,
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+                speed: 0.1,
+              },
+              drag: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: "xy",
+            },
+          },
+          legend: { display: true },
+        },
         scales: {
           x: {
             display: true,
@@ -60,4 +81,4 @@ function ChartSingleLine(props: ChartSingleLineProps) {
   );
 }
 
-export default ChartSingleLine;
+export default ChartSingleLineNoGrid;

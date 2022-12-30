@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ChartSingleLine, { ChartConfig } from "./ChartSingleLine";
-import { ChartData } from "./ChartSingleLine";
+import ChartSingleLineNoGrid, { ChartConfig } from "./ChartSingleLineNoGrid";
+import { ChartData } from "./ChartSingleLineNoGrid";
 
 function ChartSmaEmaContainer(data: ChartData) {
   const [viewOption, setViewOption] = useState(0);
@@ -207,7 +207,7 @@ function ChartSmaEmaContainer(data: ChartData) {
         </div>
       </div>
 
-      <ChartSingleLine data={chartData} config={chartConfig} />
+      <ChartSingleLineNoGrid data={chartData} config={chartConfig} />
     </>
   );
 }

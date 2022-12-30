@@ -1,7 +1,10 @@
 import "chart.js/auto";
-import { ChartDataset } from "chart.js";
+import { ChartDataset, Chart as ChartJS } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { ChartConfig, ChartData } from "./ChartSingleLine";
+import { ChartConfig } from "./ChartSingleLineNoGrid";
+import zoomPlugin from "chartjs-plugin-zoom";
+
+ChartJS.register(zoomPlugin);
 
 type ChartMultipleLines = { labels: string[] } & {
   datasets: ChartDataset[];
@@ -20,12 +23,30 @@ function ChartMultipleLines(props: ChartMultipleLines) {
       type="line"
       data={chartData}
       options={{
-        plugins: { legend: { display: true } },
+        responsive: true,
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+                speed: 0.1,
+              },
+              drag: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: "xy",
+            },
+          },
+          legend: { display: true },
+        },
         scales: {
           x: {
             display: true,
             grid: {
-              display: false,
+              display: true,
             },
             ticks: {
               autoSkip: true,
@@ -37,7 +58,7 @@ function ChartMultipleLines(props: ChartMultipleLines) {
             display: true,
             type: props.config.scale,
             grid: {
-              display: false,
+              display: true,
             },
           },
         },

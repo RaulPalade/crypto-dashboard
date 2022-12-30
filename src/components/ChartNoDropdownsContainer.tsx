@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ChartDoubleLine from "./ChartMultipleLines";
-import { ChartConfig } from "./ChartSingleLine";
-import { ChartData } from "./ChartSingleLine";
-import { ChartDataset } from "chart.js";
+import { ChartConfig } from "./ChartSingleLineNoGrid";
+import { ChartData } from "./ChartSingleLineNoGrid";
+import { Chart, ChartDataset } from "chart.js";
 
 type ChartNoDropdownsContainerProps = { labels: string[] } & {
   datasets: ChartDataset[];

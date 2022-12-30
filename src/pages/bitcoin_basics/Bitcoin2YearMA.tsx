@@ -4,7 +4,7 @@ import ChartCard from "../../components/ChartCard";
 import ChartSmaEmaContainer from "../../components/ChartSmaEmaContainer";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
-import { ChartData } from "../../components/ChartSingleLine";
+import { ChartData } from "../../components/ChartSingleLineNoGrid";
 import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
 import { ChartDataset } from "chart.js";
 
@@ -40,7 +40,7 @@ function Bitcoin2YearMa() {
 
       const datasets: ChartDataset[] = [];
       datasets.push({
-        label: data.legendLabel,
+        label: "BTC PRICE",
         data: data.values,
         backgroundColor: "rgba(30, 34, 45, 1)",
         borderColor: "rgba(30, 34, 45, 1)",
