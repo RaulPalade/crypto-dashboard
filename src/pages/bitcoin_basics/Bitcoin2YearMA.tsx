@@ -29,18 +29,18 @@ function Bitcoin2YearMa() {
       const processedChartData2MA: ChartData = {
         values: calculateTwoYearMA(data.values),
         labels: data.labels,
-        legendLabel: "2 YEAR MA",
+        legendLabel: "2 Year MA",
       };
 
       const processedChartData2MAx5: ChartData = {
         values: calculateTwoYearMAx5(data.values),
         labels: data.labels,
-        legendLabel: "2 YEAR MA X 5",
+        legendLabel: "2 Year MA x5",
       };
 
       const datasets: ChartDataset[] = [];
       datasets.push({
-        label: "BTC PRICE",
+        label: "BTC Price",
         data: data.values.slice(1000),
         backgroundColor: "rgba(30, 34, 45, 1)",
         borderColor: "rgba(30, 34, 45, 1)",
