@@ -37,7 +37,7 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
               viewOption === 0 ? "bg-lightViolet text-white" : ""
             }`}
           >
-            Grid
+            Line
           </button>
           <button
             type="button"
@@ -103,7 +103,6 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
         datasets={chartDatasets}
         config={{
           scale: scaleOption === 0 ? "linear" : "logarithmic",
-          showGrid: viewOption === 0 || viewOption === 2,
         }}
       />
     </>

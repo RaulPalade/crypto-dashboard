@@ -200,7 +200,6 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
         datasets={chartDatasets}
         config={{
           scale: scaleOption === 0 ? "linear" : "logarithmic",
-          showGrid: viewOption === 0 || viewOption === 2,
         }}
       />
     </>

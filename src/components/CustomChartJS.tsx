@@ -18,7 +18,6 @@ export interface ChartData {
 
 export interface ChartConfig {
   scale: any;
-  showGrid: boolean;
 }
 const numberOfYearToShow = 16;
 
@@ -55,7 +54,7 @@ function CustomChartJS(props: ChartMultipleLines) {
           x: {
             display: true,
             grid: {
-              display: props.config.showGrid,
+              display: true,
             },
             ticks: {
               autoSkip: true,
@@ -67,7 +66,7 @@ function CustomChartJS(props: ChartMultipleLines) {
             display: true,
             type: props.config.scale,
             grid: {
-              display: props.config.showGrid,
+              display: true,
             },
           },
         },

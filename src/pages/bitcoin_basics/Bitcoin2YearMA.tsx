@@ -116,7 +116,8 @@ function Bitcoin2YearMa() {
       borderColor: "rgba(30, 34, 45, 1)",
       borderWidth: 1,
       pointBackgroundColor: "#fff",
-      pointRadius: viewingOption === 1 || viewingOption === 2 ? 1.5 : 0.1,
+      showLine: viewingOption === 0 || viewingOption === 2,
+      pointRadius: viewingOption === 1 || viewingOption === 2 ? 1.5 : 0,
     });
 
     datasets.push({
@@ -126,7 +127,7 @@ function Bitcoin2YearMa() {
       borderColor: "rgba(41, 115, 115, 1)",
       borderWidth: 1,
       pointBackgroundColor: "#fff",
-      pointRadius: 0.1,
+      pointRadius: 0,
     });
 
     datasets.push({
@@ -136,7 +137,7 @@ function Bitcoin2YearMa() {
       borderColor: "rgba(220, 0, 0, 1)",
       borderWidth: 1,
       pointBackgroundColor: "#fff",
-      pointRadius: 0.1,
+      pointRadius: 0,
     });
 
     setChartDatasets(datasets);
