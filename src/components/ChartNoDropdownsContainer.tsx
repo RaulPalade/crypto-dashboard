@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
-import ChartDoubleLine from "./ChartMultipleLines";
-import { ChartConfig } from "./ChartSingleLineNoGrid";
-import { ChartData } from "./ChartSingleLineNoGrid";
+import ChartDoubleLine from "./CustomChartJS";
 import { Chart, ChartDataset } from "chart.js";
 
 type ChartNoDropdownsContainerProps = { labels: string[] } & {
   datasets: ChartDataset[];
-};
+} & { viewingOptionCallback: (value: number) => void };
 function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
   const [viewOption, setViewOption] = useState(0);
   const [scaleOption, setScaleOption] = useState(1);
   const [chartLabels, setChartLabels] = useState<string[]>([]);
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
-  const [chartConfig, setChartConfig] = useState<ChartConfig>({
-    scale: "logarithmic",
-  });
 
   useEffect(() => {
     setChartLabels(props.labels);
@@ -34,26 +29,35 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
         >
           <button
             type="button"
-            onClick={() => setViewOption(0)}
-            className={`focus:ring-blue-70 rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100  ease-in-out md:rounded-l-lg md:rounded-r-none ${
+            onClick={() => {
+              setViewOption(0);
+              props.viewingOptionCallback(0);
+            }}
+            className={`focus:ring-blue-70 delay-50 rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition  ease-in-out md:rounded-l-lg md:rounded-r-none ${
               viewOption === 0 ? "bg-lightViolet text-white" : ""
             }`}
           >
-            Color Coded
+            Grid
           </button>
           <button
             type="button"
-            onClick={() => setViewOption(1)}
-            className={`border-t border-b border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out ${
+            onClick={() => {
+              setViewOption(1);
+              props.viewingOptionCallback(1);
+            }}
+            className={`delay-50 border-t border-b border-gray-200 bg-white py-2 px-3 text-sm font-medium transition ease-in-out ${
               viewOption === 1 ? "bg-lightViolet text-white" : ""
             }`}
           >
-            Raw Values
+            Points
           </button>
           <button
             type="button"
-            onClick={() => setViewOption(2)}
-            className={`rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-r-md md:rounded-l-none ${
+            onClick={() => {
+              setViewOption(2);
+              props.viewingOptionCallback(2);
+            }}
+            className={`delay-50 rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition ease-in-out md:rounded-r-md md:rounded-l-none ${
               viewOption === 2 ? "bg-lightViolet text-white  " : ""
             }`}
           >
@@ -72,10 +76,9 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
           <button
             onClick={() => {
               setScaleOption(0);
-              setChartConfig({ scale: "linear" });
             }}
             type="button"
-            className={`rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-l-lg md:rounded-r-none ${
+            className={`delay-50 rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition ease-in-out md:rounded-l-lg md:rounded-r-none ${
               scaleOption === 0 ? "bg-lightViolet text-white" : ""
             }`}
           >
@@ -84,10 +87,9 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
           <button
             onClick={() => {
               setScaleOption(1);
-              setChartConfig({ scale: "logarithmic" });
             }}
             type="button"
-            className={`rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-r-md md:rounded-l-none ${
+            className={`delay-50 rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition ease-in-out md:rounded-r-md md:rounded-l-none ${
               scaleOption === 1 ? "bg-lightViolet text-white" : ""
             }`}
           >
@@ -99,7 +101,10 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
       <ChartDoubleLine
         labels={chartLabels}
         datasets={chartDatasets}
-        config={chartConfig}
+        config={{
+          scale: scaleOption === 0 ? "linear" : "logarithmic",
+          showGrid: viewOption === 0 || viewOption === 2,
+        }}
       />
     </>
   );

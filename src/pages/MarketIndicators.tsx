@@ -1,33 +1,33 @@
 import ChartCard from "../components/ChartCard";
 import ChartSmaEmaContainer from "../components/ChartSmaEmaContainer";
-import { ChartData } from "../components/ChartSingleLineNoGrid";
 import CryptoCompareApi from "../api/CryptoCompareApi";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Description from "../components/Description";
+import { ChartData } from "../components/CustomChartJS";
 
 function MarketIndicators() {
-  const [chartData, setChardData] = useState<ChartData>({
-    values: [],
-    labels: [],
-    legendLabel: "",
-  });
+  // const [chartData, setChardData] = useState<ChartData>({
+  //   values: [],
+  //   labels: [],
+  //   legendLabel: "",
+  // });
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    try {
-      const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
-        "BTC",
-        "USD"
-      );
-      setChardData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
+  //       "BTC",
+  //       "USD"
+  //     );
+  //     setChardData(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <section className="home-section">
@@ -58,9 +58,9 @@ function MarketIndicators() {
             />
           </div>
           <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
-            <ChartCard>
+            {/* <ChartCard>
               <ChartSmaEmaContainer {...chartData} />
-            </ChartCard>
+            </ChartCard> */}
           </div>
         </div>
       </div>

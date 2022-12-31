@@ -1,34 +1,48 @@
 import ChartCard from "../components/ChartCard";
 import ChartSmaEmaContainer from "../components/ChartSmaEmaContainer";
-import { ChartData } from "../components/ChartSingleLineNoGrid";
 import CryptoCompareApi from "../api/CryptoCompareApi";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Description from "../components/Description";
+import { ChartData } from "../components/CustomChartJS";
+import { ChartDataset } from "chart.js";
 
 function OnChainIndicators() {
-  const [chartData, setChardData] = useState<ChartData>({
-    values: [],
-    labels: [],
-    legendLabel: "",
-  });
+  // const [chartLabels, setChartLabels] = useState<string[]>([]);
+  // const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
+  // const [viewingOption, setViewingOption] = useState(0);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    try {
-      const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
-        "BTC",
-        "USD",
-        2000
-      );
-      setChardData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
+  //       "BTC",
+  //       "USD",
+  //       2000
+  //     );
+  //     setChartLabels(data.labels);
+  //     setChartDatasets([
+  //       {
+  //         label: "BTC Price",
+  //         data: data.values,
+  //         backgroundColor: "rgba(30, 34, 45, 1)",
+  //         borderColor: "rgba(30, 34, 45, 1)",
+  //         borderWidth: 1,
+  //         pointBackgroundColor: "#fff",
+  //         pointRadius: 0.1,
+  //       },
+  //     ]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  function onViewingOptionChanged(value: number) {
+    // setViewingOption(value);
+  }
 
   return (
     <section className="home-section">
@@ -59,9 +73,13 @@ function OnChainIndicators() {
             />
           </div>
           <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
-            <ChartCard>
-              <ChartSmaEmaContainer {...chartData} />
-            </ChartCard>
+            {/* <ChartCard>
+              <ChartSmaEmaContainer
+                labels={chartLabels}
+                datasets={chartDatasets}
+                viewingOptionCallback={onViewingOptionChanged}
+              />
+            </ChartCard> */}
           </div>
         </div>
       </div>

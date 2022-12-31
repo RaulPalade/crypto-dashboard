@@ -3,18 +3,44 @@ import CryptoCompareApi from "../../api/CryptoCompareApi";
 import ChartCard from "../../components/ChartCard";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
-import { ChartData } from "../../components/ChartSingleLineNoGrid";
 import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
 import { ChartDataset } from "chart.js";
+import { ChartData } from "../../components/CustomChartJS";
 
 function Bitcoin200WeekMAHeatmap() {
   const [chartLabels, setChartLabels] = useState<string[]>([]);
+  const [bitcoinPriceChart, setBitcoinPriceChart] = useState<ChartData>({
+    values: [],
+    labels: [],
+    legendLabel: "",
+  });
+  const [bitcoin200WeekMAChart, setBitcoin200WeekMAChart] = useState<ChartData>(
+    {
+      values: [],
+      labels: [],
+      legendLabel: "",
+    }
+  );
+  const [monthlyIncreaseDataset, setMonthlyIncreaseDataset] = useState<
+    number[]
+  >([]);
 
+  const [colorsDataset, setColorsDataset] = useState<string[]>([]);
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
+  const [viewingOption, setViewingOption] = useState(0);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    createChartDatasets(
+      bitcoinPriceChart,
+      bitcoin200WeekMAChart,
+      monthlyIncreaseDataset,
+      colorsDataset
+    );
+  }, [viewingOption]);
 
   const fetchData = async () => {
     try {
@@ -60,39 +86,17 @@ function Bitcoin200WeekMAHeatmap() {
           return "rgba(122, 48, 108, 1)";
         }
       });
+      setBitcoinPriceChart(data);
+      setBitcoin200WeekMAChart(processedChartData200WeekMA);
+      setMonthlyIncreaseDataset(monthlyIncreaseDataset);
+      setColorsDataset(colors);
 
-      const datasets: ChartDataset[] = [];
-      datasets.push({
-        label: "BTC Price",
-        data: data.values.slice(1400),
-        backgroundColor: "rgba(30, 34, 45, 1)",
-        borderColor: "rgba(30, 34, 45, 1)",
-        borderWidth: 1,
-        pointBackgroundColor: "#fff",
-        pointRadius: 0.1,
-      });
-
-      datasets.push({
-        label: processedChartData200WeekMA.legendLabel,
-        data: processedChartData200WeekMA.values.slice(1400),
-        backgroundColor: "rgba(41, 115, 115, 1)",
-        borderColor: "rgba(41, 115, 115, 1)",
-        borderWidth: 1,
-        pointBackgroundColor: "#fff",
-        pointRadius: 0.1,
-      });
-
-      datasets.push({
-        label: "% Monthly Increase Of 200 Week MA",
-        data: monthlyIncreaseDataset,
-        backgroundColor: colors,
-        borderColor: colors,
-        borderWidth: 1,
-        pointBackgroundColor: colors,
-        pointRadius: 3,
-      });
-
-      setChartDatasets(datasets);
+      createChartDatasets(
+        data,
+        processedChartData200WeekMA,
+        monthlyIncreaseDataset,
+        colors
+      );
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +115,50 @@ function Bitcoin200WeekMAHeatmap() {
       },
       [0, 0]
     );
+  }
+
+  function createChartDatasets(
+    data: ChartData,
+    processedChartData200WeekMA: ChartData,
+    monthlyIncreaseDataset: number[],
+    colors: string[]
+  ) {
+    const datasets: ChartDataset[] = [];
+    datasets.push({
+      label: "BTC Price",
+      data: data.values.slice(1400),
+      backgroundColor: "rgba(30, 34, 45, 1)",
+      borderColor: "rgba(30, 34, 45, 1)",
+      borderWidth: 1,
+      pointBackgroundColor: "#fff",
+      pointRadius: viewingOption === 1 || viewingOption === 2 ? 1.5 : 0.1,
+    });
+
+    datasets.push({
+      label: processedChartData200WeekMA.legendLabel,
+      data: processedChartData200WeekMA.values.slice(1400),
+      backgroundColor: "rgba(41, 115, 115, 1)",
+      borderColor: "rgba(41, 115, 115, 1)",
+      borderWidth: 1,
+      pointBackgroundColor: "#fff",
+      pointRadius: 0.1,
+    });
+
+    datasets.push({
+      label: "% Monthly Increase Of 200 Week MA",
+      data: monthlyIncreaseDataset,
+      backgroundColor: colors,
+      borderColor: colors,
+      borderWidth: 1,
+      pointBackgroundColor: colors,
+      pointRadius: 3,
+    });
+
+    setChartDatasets(datasets);
+  }
+
+  function onViewingOptionChanged(value: number) {
+    setViewingOption(value);
   }
 
   return (
@@ -153,6 +201,7 @@ function Bitcoin200WeekMAHeatmap() {
               <ChartNoDropdownsContainer
                 labels={chartLabels}
                 datasets={chartDatasets}
+                viewingOptionCallback={onViewingOptionChanged}
               />
             </ChartCard>
           </div>

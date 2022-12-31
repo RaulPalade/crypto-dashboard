@@ -1,22 +1,21 @@
+import { ChartDataset } from "chart.js";
 import { useEffect, useState } from "react";
-import ChartSingleLineNoGrid, { ChartConfig } from "./ChartSingleLineNoGrid";
-import { ChartData } from "./ChartSingleLineNoGrid";
+import CustomChartJS, { ChartData } from "./CustomChartJS";
 
-function ChartSmaEmaContainer(data: ChartData) {
+type ChartSmaEmaContainerProps = { labels: string[] } & {
+  datasets: ChartDataset[];
+} & { viewingOptionCallback: (value: number) => void };
+function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
   const [viewOption, setViewOption] = useState(0);
   const [scaleOption, setScaleOption] = useState(1);
-  const [chartData, setChartData] = useState<ChartData>({
-    values: [],
-    labels: [],
-    legendLabel: "",
-  });
-  const [chartConfig, setChartConfig] = useState<ChartConfig>({
-    scale: "logarithmic",
-  });
+  const [chartLabels, setChartLabels] = useState<string[]>([]);
+
+  const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
 
   useEffect(() => {
-    setChartData(data);
-  }, [data]);
+    setChartLabels(props.labels);
+    setChartDatasets(props.datasets);
+  }, [props.labels, props.datasets]);
 
   const filterSMA = (smaPeriod: number) => {
     // Reset the other dropdown
@@ -26,18 +25,18 @@ function ChartSmaEmaContainer(data: ChartData) {
     }
     if (isNaN(smaPeriod)) {
       console.log("isNan");
-      setChartData(data);
+      setChartDatasets([props.datasets[0]]);
       return;
     }
     const smaData: number[] = [];
 
-    for (let i = 0; i < data.values.length; i++) {
+    for (let i = 0; i < props.datasets[0].data.length; i++) {
       let sum = 0;
 
       // Calculate the sum of prices for the previous 30 periods
       for (let j = i - smaPeriod - 1; j <= i; j++) {
         if (j >= 0) {
-          sum += data.values[j];
+          sum += props.datasets[0].data[j] as number;
         }
       }
 
@@ -46,12 +45,7 @@ function ChartSmaEmaContainer(data: ChartData) {
       smaData.push(average);
     }
 
-    const updatedChartData: ChartData = {
-      values: smaData,
-      labels: data.labels,
-      legendLabel: data.legendLabel,
-    };
-    setChartData(updatedChartData);
+    setChartDatasets([{ ...chartDatasets[0], data: smaData }]);
   };
 
   const filterEMA = (emaPeriod: number) => {
@@ -62,7 +56,7 @@ function ChartSmaEmaContainer(data: ChartData) {
     }
     if (isNaN(emaPeriod)) {
       console.log("isNan");
-      setChartData(data);
+      setChartDatasets([props.datasets[0]]);
       return;
     }
     const emaData: number[] = [];
@@ -70,26 +64,22 @@ function ChartSmaEmaContainer(data: ChartData) {
     // Calculate the smoothing coefficient
     const k = 2 / (emaPeriod + 1);
 
-    for (let i = 0; i < data.values.length; i++) {
+    for (let i = 0; i < props.datasets[0].data.length; i++) {
       let ema;
 
       if (i === 0) {
         // If it is the first period, the EMA is equal to the price
-        ema = data.values[i];
+        ema = props.datasets[0].data[i];
       } else {
         // Otherwise, calculate the EMA using the above formula
-        ema = data.values[i] * k + emaData[i - 1] * (1 - k);
+        ema =
+          (props.datasets[0].data[i] as number) * k + emaData[i - 1] * (1 - k);
       }
 
-      emaData.push(ema);
+      emaData.push(ema as number);
     }
 
-    const updatedChartData: ChartData = {
-      values: emaData,
-      labels: data.labels,
-      legendLabel: data.legendLabel,
-    };
-    setChartData(updatedChartData);
+    setChartDatasets([{ ...chartDatasets[0], data: emaData }]);
   };
 
   return (
@@ -143,7 +133,6 @@ function ChartSmaEmaContainer(data: ChartData) {
           <button
             onClick={() => {
               setScaleOption(0);
-              setChartConfig({ scale: "linear" });
             }}
             type="button"
             className={`rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-l-lg md:rounded-r-none ${
@@ -155,7 +144,6 @@ function ChartSmaEmaContainer(data: ChartData) {
           <button
             onClick={() => {
               setScaleOption(1);
-              setChartConfig({ scale: "logarithmic" });
             }}
             type="button"
             className={`rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-r-md md:rounded-l-none ${
@@ -207,7 +195,14 @@ function ChartSmaEmaContainer(data: ChartData) {
         </div>
       </div>
 
-      <ChartSingleLineNoGrid data={chartData} config={chartConfig} />
+      <CustomChartJS
+        labels={chartLabels}
+        datasets={chartDatasets}
+        config={{
+          scale: scaleOption === 0 ? "linear" : "logarithmic",
+          showGrid: viewOption === 0 || viewOption === 2,
+        }}
+      />
     </>
   );
 }

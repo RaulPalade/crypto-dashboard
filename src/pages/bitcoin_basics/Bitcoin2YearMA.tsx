@@ -1,21 +1,48 @@
 import { useState, useEffect } from "react";
 import CryptoCompareApi from "../../api/CryptoCompareApi";
 import ChartCard from "../../components/ChartCard";
-import ChartSmaEmaContainer from "../../components/ChartSmaEmaContainer";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
-import { ChartData } from "../../components/ChartSingleLineNoGrid";
 import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
 import { ChartDataset } from "chart.js";
+import { ChartData } from "../../components/CustomChartJS";
 
 function Bitcoin2YearMa() {
   const [chartLabels, setChartLabels] = useState<string[]>([]);
 
+  const [bitcoinPriceChart, setBitcoinPriceChart] = useState<ChartData>({
+    values: [],
+    labels: [],
+    legendLabel: "",
+  });
+  const [bitcoin2YearMAChart, setBitcoin2YearMAChart] = useState<ChartData>({
+    values: [],
+    labels: [],
+    legendLabel: "",
+  });
+  const [bitcoin2YearMAx5Chart, setBitcoin2YearMAx5Chart] = useState<ChartData>(
+    { values: [], labels: [], legendLabel: "" }
+  );
+
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
+
+  const [viewingOption, setViewingOption] = useState(0);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    createChartDatasets(
+      bitcoinPriceChart,
+      bitcoin2YearMAChart,
+      bitcoin2YearMAx5Chart
+    );
+  }, [viewingOption]);
+
+  function onViewingOptionChanged(value: number) {
+    setViewingOption(value);
+  }
 
   const fetchData = async () => {
     try {
@@ -25,7 +52,6 @@ function Bitcoin2YearMa() {
         1500,
         2
       );
-      setChartLabels(data.labels.slice(1000));
       const processedChartData2MA: ChartData = {
         values: calculateTwoYearMA(data.values),
         labels: data.labels,
@@ -37,39 +63,11 @@ function Bitcoin2YearMa() {
         labels: data.labels,
         legendLabel: "2 Year MA x5",
       };
-
-      const datasets: ChartDataset[] = [];
-      datasets.push({
-        label: "BTC Price",
-        data: data.values.slice(1000),
-        backgroundColor: "rgba(30, 34, 45, 1)",
-        borderColor: "rgba(30, 34, 45, 1)",
-        borderWidth: 1,
-        pointBackgroundColor: "#fff",
-        pointRadius: 0.1,
-      });
-
-      datasets.push({
-        label: processedChartData2MA.legendLabel,
-        data: processedChartData2MA.values.slice(1000),
-        backgroundColor: "rgba(41, 115, 115, 1)",
-        borderColor: "rgba(41, 115, 115, 1)",
-        borderWidth: 1,
-        pointBackgroundColor: "#fff",
-        pointRadius: 0.1,
-      });
-
-      datasets.push({
-        label: processedChartData2MAx5.legendLabel,
-        data: processedChartData2MAx5.values.slice(1000),
-        backgroundColor: "rgba(220, 0, 0, 1)",
-        borderColor: "rgba(220, 0, 0, 1)",
-        borderWidth: 1,
-        pointBackgroundColor: "#fff",
-        pointRadius: 0.1,
-      });
-
-      setChartDatasets(datasets);
+      setChartLabels(data.labels.slice(1000));
+      setBitcoinPriceChart(data);
+      setBitcoin2YearMAChart(processedChartData2MA);
+      setBitcoin2YearMAx5Chart(processedChartData2MAx5);
+      createChartDatasets(data, processedChartData2MA, processedChartData2MAx5);
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +102,45 @@ function Bitcoin2YearMa() {
       [0, 0]
     );
   }
+
+  function createChartDatasets(
+    data: ChartData,
+    processedChartData2MA: ChartData,
+    processedChartData2MAx5: ChartData
+  ) {
+    const datasets: ChartDataset[] = [];
+    datasets.push({
+      label: "BTC Price",
+      data: data.values.slice(1000),
+      backgroundColor: "rgba(30, 34, 45, 1)",
+      borderColor: "rgba(30, 34, 45, 1)",
+      borderWidth: 1,
+      pointBackgroundColor: "#fff",
+      pointRadius: viewingOption === 1 || viewingOption === 2 ? 1.5 : 0.1,
+    });
+
+    datasets.push({
+      label: processedChartData2MA.legendLabel,
+      data: processedChartData2MA.values.slice(1000),
+      backgroundColor: "rgba(41, 115, 115, 1)",
+      borderColor: "rgba(41, 115, 115, 1)",
+      borderWidth: 1,
+      pointBackgroundColor: "#fff",
+      pointRadius: 0.1,
+    });
+
+    datasets.push({
+      label: processedChartData2MAx5.legendLabel,
+      data: processedChartData2MAx5.values.slice(1000),
+      backgroundColor: "rgba(220, 0, 0, 1)",
+      borderColor: "rgba(220, 0, 0, 1)",
+      borderWidth: 1,
+      pointBackgroundColor: "#fff",
+      pointRadius: 0.1,
+    });
+
+    setChartDatasets(datasets);
+  }
   return (
     <section className="home-section">
       <div className="home-content flex flex-col items-start p-8">
@@ -136,6 +173,7 @@ function Bitcoin2YearMa() {
               <ChartNoDropdownsContainer
                 labels={chartLabels}
                 datasets={chartDatasets}
+                viewingOptionCallback={onViewingOptionChanged}
               />
             </ChartCard>
           </div>

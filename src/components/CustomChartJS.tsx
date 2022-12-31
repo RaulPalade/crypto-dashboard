@@ -1,7 +1,6 @@
 import "chart.js/auto";
 import { ChartDataset, Chart as ChartJS } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { ChartConfig } from "./ChartSingleLineNoGrid";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 ChartJS.register(zoomPlugin);
@@ -11,9 +10,19 @@ type ChartMultipleLines = { labels: string[] } & {
 } & {
   config: ChartConfig;
 };
+export interface ChartData {
+  values: number[];
+  labels: string[];
+  legendLabel: string;
+}
+
+export interface ChartConfig {
+  scale: any;
+  showGrid: boolean;
+}
 const numberOfYearToShow = 16;
 
-function ChartMultipleLines(props: ChartMultipleLines) {
+function CustomChartJS(props: ChartMultipleLines) {
   const chartData = {
     labels: props.labels,
     datasets: props.datasets,
@@ -46,7 +55,7 @@ function ChartMultipleLines(props: ChartMultipleLines) {
           x: {
             display: true,
             grid: {
-              display: true,
+              display: props.config.showGrid,
             },
             ticks: {
               autoSkip: true,
@@ -58,7 +67,7 @@ function ChartMultipleLines(props: ChartMultipleLines) {
             display: true,
             type: props.config.scale,
             grid: {
-              display: true,
+              display: props.config.showGrid,
             },
           },
         },
@@ -67,4 +76,4 @@ function ChartMultipleLines(props: ChartMultipleLines) {
   );
 }
 
-export default ChartMultipleLines;
+export default CustomChartJS;

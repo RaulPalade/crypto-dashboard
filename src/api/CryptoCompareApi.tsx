@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChartData } from "../components/ChartSingleLineNoGrid";
+import { ChartData } from "../components/CustomChartJS";
 
 class CryptoCompareApi {
   private api: any;
