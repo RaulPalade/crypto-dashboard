@@ -89,7 +89,13 @@ function Sidebar() {
               <p>Stock-to-Flow Model</p>
             </li>
             <li>
-              <p>Fear And Greed Index</p>
+              <p
+                onClick={() =>
+                  navigate("/bitcoin-basics/bitcoin-fear-and-greed")
+                }
+              >
+                Fear And Greed Index
+              </p>
             </li>
             <li>
               <p>Pi Cycle Top Indicator</p>

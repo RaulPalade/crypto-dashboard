@@ -31,8 +31,23 @@ function CustomChartJS(props: ChartMultipleLines) {
       type="line"
       data={chartData}
       options={{
+        parsing: {
+          xAxisKey: "customDataset.xAxis",
+          yAxisKey: "customDataset.yAxis",
+        },
         responsive: true,
         plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (t: any) {
+                console.log(t);
+                if (t.raw.customDataset === undefined) {
+                  return `${t.dataset.label}: $${t.formattedValue}`;
+                }
+                return `${t.raw.customDataset.value}`; // return a string that you wish to append
+              },
+            },
+          },
           zoom: {
             zoom: {
               wheel: {
