@@ -74,8 +74,6 @@ function BitcoinFearAndGreedIndex() {
     bitcoinFearAndGreedData: ChartData,
     colors: string[]
   ) {
-    console.log(bitcoinPriceData.values.length);
-    console.log(bitcoinFearAndGreedData.values.length);
     const customFearAndGreedDataset = bitcoinFearAndGreedData.values.map(
       (fearAndGreedValue, index) => {
         return {
