@@ -96,7 +96,9 @@ function BitcoinFearAndGreedIndex() {
       borderColor: "rgba(30, 34, 45, 1)",
       borderWidth: 1,
       showLine: true,
-      pointRadius: 0,
+      pointRadius: 3,
+      pointBorderColor: "rgba(0, 0, 0, 0)",
+      pointBackgroundColor: "rgba(0, 0, 0, 0)",
     });
 
     datasets.push({
@@ -104,10 +106,10 @@ function BitcoinFearAndGreedIndex() {
       data: customFearAndGreedDataset,
       backgroundColor: colors,
       borderColor: colors,
-      borderWidth: 5,
+      borderWidth: 1,
       showLine: false,
       pointBackgroundColor: colors,
-      pointRadius: 1,
+      pointRadius: 3,
     });
 
     setChartDatasets(datasets);
