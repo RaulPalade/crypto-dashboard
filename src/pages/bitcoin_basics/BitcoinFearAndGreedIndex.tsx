@@ -82,7 +82,7 @@ function BitcoinFearAndGreedIndex() {
           customDataset: {
             xAxis: bitcoinPriceData.labels[index],
             yAxis: bitcoinPriceData.values[index],
-            value: `Fear And Greed Value: ${fearAndGreedValue}`,
+            label: `Fear And Greed Value: ${fearAndGreedValue}`,
           },
         };
       }

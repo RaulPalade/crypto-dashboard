@@ -44,7 +44,7 @@ function CustomChartJS(props: ChartMultipleLines) {
                 if (t.raw.customDataset === undefined) {
                   return `${t.dataset.label}: $${t.formattedValue}`;
                 }
-                return `${t.raw.customDataset.value}`; // return a string that you wish to append
+                return `${t.raw.customDataset.label}`; // return a string that you wish to append
               },
             },
           },
