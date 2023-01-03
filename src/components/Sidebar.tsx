@@ -98,7 +98,11 @@ function Sidebar() {
               </p>
             </li>
             <li>
-              <p>Pi Cycle Top Indicator</p>
+              <p
+                onClick={() => navigate("/bitcoin-basics/bitcoin-pi-cycle-top")}
+              >
+                Pi Cycle Top Indicator
+              </p>
             </li>
             <li>
               <p>Bitcoin Profitable Days</p>
