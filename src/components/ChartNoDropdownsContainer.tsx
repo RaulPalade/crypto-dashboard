@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ChartDoubleLine from "./CustomChartJS";
 import { Chart, ChartDataset } from "chart.js";
+import CustomChartJS from "./CustomChartJS";
 
 type ChartNoDropdownsContainerProps = { labels: string[] } & {
   datasets: ChartDataset[];
@@ -98,7 +98,7 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
         </div>
       </div>
       <div></div>
-      <ChartDoubleLine
+      <CustomChartJS
         labels={chartLabels}
         datasets={chartDatasets}
         config={{

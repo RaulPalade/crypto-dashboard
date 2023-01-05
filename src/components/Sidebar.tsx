@@ -104,11 +104,15 @@ function Sidebar() {
                 Pi Cycle Top Indicator
               </p>
             </li>
+
             <li>
-              <p>Bitcoin Profitable Days</p>
-            </li>
-            <li>
-              <p>Bitcoin Rainbow Price Chart Indicator</p>
+              <p
+                onClick={() =>
+                  navigate("/bitcoin-basics/bitcoin-rainbow-chart")
+                }
+              >
+                Bitcoin Rainbow Price Chart Indicator
+              </p>
             </li>
             <li>
               <p>Puell Multiple</p>
