@@ -184,6 +184,7 @@ function BitcoinPiCycleTop() {
           <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
             <ChartCard>
               <ChartNoDropdownsContainer
+                type="line"
                 labels={chartLabels}
                 datasets={chartDatasets}
                 viewingOptionCallback={onViewingOptionChanged}

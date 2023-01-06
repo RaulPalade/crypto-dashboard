@@ -2,6 +2,7 @@ import "chart.js/auto";
 import { ChartDataset, Chart as ChartJS } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import zoomPlugin from "chartjs-plugin-zoom";
+import { type } from "os";
 
 ChartJS.register(zoomPlugin);
 
@@ -17,6 +18,7 @@ export interface ChartData {
 }
 
 export interface ChartConfig {
+  type: any;
   scale: any;
 }
 const numberOfYearToShow = 16;
@@ -28,7 +30,7 @@ function CustomChartJS(props: ChartMultipleLines) {
   };
   return (
     <Chart
-      type="line"
+      type={props.config.type}
       data={chartData}
       options={{
         parsing: {

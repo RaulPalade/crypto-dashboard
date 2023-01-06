@@ -2,7 +2,7 @@ import { ChartDataset } from "chart.js";
 import { useEffect, useState } from "react";
 import CustomChartJS, { ChartData } from "./CustomChartJS";
 
-type ChartSmaEmaContainerProps = { labels: string[] } & {
+type ChartSmaEmaContainerProps = { type: any } & { labels: string[] } & {
   datasets: ChartDataset[];
 } & { viewingOptionCallback: (value: number) => void };
 function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
@@ -199,6 +199,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
         labels={chartLabels}
         datasets={chartDatasets}
         config={{
+          type: props.type,
           scale: scaleOption === 0 ? "linear" : "logarithmic",
         }}
       />

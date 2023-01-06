@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Chart, ChartDataset } from "chart.js";
 import CustomChartJS from "./CustomChartJS";
 
-type ChartNoDropdownsContainerProps = { labels: string[] } & {
+type ChartNoDropdownsContainerProps = { type: any } & { labels: string[] } & {
   datasets: ChartDataset[];
 } & { viewingOptionCallback: (value: number) => void };
 function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
@@ -102,6 +102,7 @@ function ChartNoDropdownsContainer(props: ChartNoDropdownsContainerProps) {
         labels={chartLabels}
         datasets={chartDatasets}
         config={{
+          type: props.type,
           scale: scaleOption === 0 ? "linear" : "logarithmic",
         }}
       />

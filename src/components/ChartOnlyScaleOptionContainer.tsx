@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Chart, ChartDataset } from "chart.js";
 import CustomChartJS from "./CustomChartJS";
 
-type ChartOnlyScaleOptionContainerProps = { labels: string[] } & {
+type ChartOnlyScaleOptionContainerProps = { type: any } & {
+  labels: string[];
+} & {
   datasets: any[];
 };
 function ChartOnlyScaleOptionContainer(
@@ -57,6 +59,7 @@ function ChartOnlyScaleOptionContainer(
         labels={chartLabels}
         datasets={chartDatasets}
         config={{
+          type: props.type,
           scale: scaleOption === 0 ? "linear" : "logarithmic",
         }}
       />
