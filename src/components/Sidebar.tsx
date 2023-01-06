@@ -115,7 +115,9 @@ function Sidebar() {
               </p>
             </li>
             <li>
-              <p>Puell Multiple</p>
+              <p onClick={() => navigate("/bitcoin-basics/bitcoin-supply")}>
+                Bitcoin Supply
+              </p>
             </li>
           </ul>
         </li>

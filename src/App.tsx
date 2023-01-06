@@ -17,6 +17,7 @@ import Bitcoin200WeekMAHeatmap from "./pages/bitcoin_basics/Bitcoin200WeekMAHeat
 import BitcoinFearAndGreedIndex from "./pages/bitcoin_basics/BitcoinFearAndGreedIndex";
 import BitcoinPiCycleTop from "./pages/bitcoin_basics/BitcoinPiCycleTop";
 import BitcoinRainbowChart from "./pages/bitcoin_basics/BitcoinRainbowChart";
+import BitcoinSupply from "./pages/bitcoin_basics/BitcoinSupply";
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
           <Route
             path="/bitcoin-basics/bitcoin-rainbow-chart"
             element={<BitcoinRainbowChart />}
+          />
+          <Route
+            path="/bitcoin-basics/bitcoin-supply"
+            element={<BitcoinSupply />}
           />
           <Route path="/market-indicators" element={<MarketIndicators />} />
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />
