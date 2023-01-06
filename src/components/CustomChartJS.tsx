@@ -85,6 +85,23 @@ function CustomChartJS(props: ChartMultipleLines) {
             grid: {
               display: true,
             },
+            ticks: {
+              autoSkip: true,
+              maxTicksLimit: 10,
+            },
+            min: 0,
+            max:
+              Math.max(
+                ...props.datasets.map((dataset) =>
+                  Math.max(...(dataset.data as number[]))
+                )
+              ) +
+              Math.max(
+                ...props.datasets.map((dataset) =>
+                  Math.max(...(dataset.data as number[]))
+                )
+              ) *
+                0.2,
           },
         },
       }}
