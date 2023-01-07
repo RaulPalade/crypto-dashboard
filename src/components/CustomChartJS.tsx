@@ -45,6 +45,9 @@ function CustomChartJS(props: ChartMultipleLines) {
             callbacks: {
               label: function (t: any) {
                 console.log(t);
+                if (props.config.type === "pie") {
+                  return t.formattedValue;
+                }
                 if (t.raw.customDataset === undefined) {
                   return `${t.dataset.label}: $${t.formattedValue}`;
                 }
@@ -55,14 +58,14 @@ function CustomChartJS(props: ChartMultipleLines) {
           zoom: {
             zoom: {
               wheel: {
-                enabled: true,
+                enabled: props.config.type !== "pie",
                 speed: 0.1,
               },
               drag: {
-                enabled: true,
+                enabled: props.config.type !== "pie",
               },
               pinch: {
-                enabled: true,
+                enabled: props.config.type !== "pie",
               },
               mode: "xy",
             },
@@ -75,9 +78,9 @@ function CustomChartJS(props: ChartMultipleLines) {
         },
         scales: {
           x: {
-            display: true,
+            display: props.config.type !== "pie",
             grid: {
-              display: true,
+              display: props.config.type !== "pie",
             },
             ticks: {
               autoSkip: true,
@@ -86,10 +89,10 @@ function CustomChartJS(props: ChartMultipleLines) {
           },
 
           y: {
-            display: true,
+            display: props.config.type !== "pie",
             type: props.config.scale,
             grid: {
-              display: true,
+              display: props.config.type !== "pie",
             },
             ticks: {
               autoSkip: true,

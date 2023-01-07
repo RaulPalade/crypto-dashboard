@@ -72,7 +72,7 @@ function BitcoinSupply() {
 
     datasets.push({
       label: "BTC Supply",
-      data: customSupplyDataset,
+      data: data,
       backgroundColor: colors,
       borderColor: colors,
       borderWidth: 1,
@@ -149,14 +149,16 @@ function BitcoinSupply() {
           </div>
           <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
             <ChartCard>
-              <CustomChartJS
-                labels={labels}
-                datasets={chartDatasets}
-                config={{
-                  type: "bar",
-                  scale: "logarithmic",
-                }}
-              />
+              <div className="pie-chart-container">
+                <CustomChartJS
+                  labels={labels}
+                  datasets={chartDatasets}
+                  config={{
+                    type: "pie",
+                    scale: "linear",
+                  }}
+                />
+              </div>
             </ChartCard>
           </div>
         </div>
