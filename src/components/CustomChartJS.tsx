@@ -44,7 +44,6 @@ function CustomChartJS(props: ChartMultipleLines) {
           tooltip: {
             callbacks: {
               label: function (t: any) {
-                console.log(t);
                 if (props.config.type === "pie") {
                   return t.formattedValue;
                 }
