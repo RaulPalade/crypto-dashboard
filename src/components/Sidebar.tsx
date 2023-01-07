@@ -23,7 +23,7 @@ function Sidebar() {
     }
   };
 
-  const openSidebar = () => {
+  const toggleSidebar = () => {
     let sidebar = document.querySelector(".sidebar") as HTMLElement;
     sidebar.classList.toggle("close");
   };
@@ -36,7 +36,7 @@ function Sidebar() {
   return (
     <div className="sidebar close">
       <div className="logo-details">
-        <i className="logo" onClick={openSidebar}>
+        <i className="logo" onClick={toggleSidebar}>
           <img src={Logo} width={60} alt="" />
         </i>
         <span className="logo_name">CryptoVision</span>
