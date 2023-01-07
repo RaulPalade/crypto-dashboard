@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import CryptoCompareApi from "../../api/CryptoCompareApi";
-import ChartCard from "../../components/ChartCard";
+import PieCard from "../../components/PieCard";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
 import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
@@ -148,8 +148,8 @@ function BitcoinSupply() {
             />
           </div>
           <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
-            <ChartCard>
-              <div className="pie-chart-container">
+            <PieCard>
+              <div className="pie-chart-container flex items-center justify-center">
                 <CustomChartJS
                   labels={labels}
                   datasets={chartDatasets}
@@ -159,7 +159,7 @@ function BitcoinSupply() {
                   }}
                 />
               </div>
-            </ChartCard>
+            </PieCard>
           </div>
         </div>
       </div>

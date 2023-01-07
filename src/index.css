@@ -279,10 +279,6 @@ code {
   font-weight: 600;
 }
 
-.pie-chart-container {  
-  border-width: 2px;
-}
-
 @media screen and (max-width: 400px) {
   .sidebar {
     width: 240px;
@@ -307,4 +303,9 @@ code {
     left: 78px;
     width: calc(100% - 78px);
   }
+}
+
+.pie-chart-container canvas {
+  width: 60% !important;
+  height: 30% !important;
 }
