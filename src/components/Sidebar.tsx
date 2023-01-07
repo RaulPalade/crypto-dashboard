@@ -119,6 +119,11 @@ function Sidebar() {
                 Bitcoin Supply
               </p>
             </li>
+            <li>
+              <p onClick={() => navigate("/bitcoin-basics/bitcoin-halving")}>
+                Bitcoin Halving
+              </p>
+            </li>
           </ul>
         </li>
         <li

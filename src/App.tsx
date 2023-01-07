@@ -18,6 +18,7 @@ import BitcoinFearAndGreedIndex from "./pages/bitcoin_basics/BitcoinFearAndGreed
 import BitcoinPiCycleTop from "./pages/bitcoin_basics/BitcoinPiCycleTop";
 import BitcoinRainbowChart from "./pages/bitcoin_basics/BitcoinRainbowChart";
 import BitcoinSupply from "./pages/bitcoin_basics/BitcoinSupply";
+import BitcoinHalving from "./pages/bitcoin_basics/BitcoinHalving";
 
 function App() {
   return (
@@ -50,6 +51,10 @@ function App() {
           <Route
             path="/bitcoin-basics/bitcoin-supply"
             element={<BitcoinSupply />}
+          />
+          <Route
+            path="/bitcoin-basics/bitcoin-halving"
+            element={<BitcoinHalving />}
           />
           <Route path="/market-indicators" element={<MarketIndicators />} />
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />

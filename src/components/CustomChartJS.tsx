@@ -2,9 +2,10 @@ import "chart.js/auto";
 import { ChartDataset, Chart as ChartJS } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import zoomPlugin from "chartjs-plugin-zoom";
-import { type } from "os";
+import annotationPlugin from "chartjs-plugin-annotation";
 
 ChartJS.register(zoomPlugin);
+ChartJS.register(annotationPlugin);
 
 type ChartMultipleLines = { labels: string[] } & {
   datasets: ChartDataset[];
@@ -20,6 +21,7 @@ export interface ChartData {
 export interface ChartConfig {
   type: any;
   scale: any;
+  annotations?: any[];
 }
 const numberOfYearToShow = 16;
 
@@ -66,6 +68,10 @@ function CustomChartJS(props: ChartMultipleLines) {
             },
           },
           legend: { display: true },
+
+          annotation: {
+            annotations: props.config.annotations || [],
+          },
         },
         scales: {
           x: {
@@ -89,19 +95,6 @@ function CustomChartJS(props: ChartMultipleLines) {
               autoSkip: true,
               maxTicksLimit: 10,
             },
-            min: 0,
-            max:
-              Math.max(
-                ...props.datasets.map((dataset) =>
-                  Math.max(...(dataset.data as number[]))
-                )
-              ) +
-              Math.max(
-                ...props.datasets.map((dataset) =>
-                  Math.max(...(dataset.data as number[]))
-                )
-              ) *
-                0.2,
           },
         },
       }}

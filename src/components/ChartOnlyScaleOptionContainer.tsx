@@ -6,7 +6,7 @@ type ChartOnlyScaleOptionContainerProps = { type: any } & {
   labels: string[];
 } & {
   datasets: any[];
-};
+} & { annotations?: any[] };
 function ChartOnlyScaleOptionContainer(
   props: ChartOnlyScaleOptionContainerProps
 ) {
@@ -61,6 +61,7 @@ function ChartOnlyScaleOptionContainer(
         config={{
           type: props.type,
           scale: scaleOption === 0 ? "linear" : "logarithmic",
+          annotations: props.annotations,
         }}
       />
     </>
