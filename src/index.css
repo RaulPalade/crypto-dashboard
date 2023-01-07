@@ -151,8 +151,7 @@ code {
 .sidebar .nav-links li .sub-menu p {
   color: #fff;
   font-size: 15px;
-  padding: 5px 0;
-  white-space: nowrap;
+  padding: 5px 5px;
   opacity: 0.6;
   transition: all 0.3s ease;
 }
@@ -306,6 +305,6 @@ code {
 }
 
 .pie-chart-container canvas {
-  width: 60% !important;
-  height: 30% !important;
+  width: 85% !important;
+  height: 100% !important;
 }
