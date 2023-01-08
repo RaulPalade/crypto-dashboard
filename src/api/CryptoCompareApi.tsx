@@ -87,6 +87,9 @@ class CryptoCompareApi {
         return element.addressesCount;
       });
       const labels: string[] = distribution.map((element) => {
+        if (element.to === 0) {
+          return `${element.from}+ BTC`;
+        }
         return `${element.from}-${element.to} BTC`;
       });
 
