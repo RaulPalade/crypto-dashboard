@@ -19,6 +19,7 @@ import BitcoinPiCycleTop from "./pages/bitcoin_basics/BitcoinPiCycleTop";
 import BitcoinRainbowChart from "./pages/bitcoin_basics/BitcoinRainbowChart";
 import BitcoinSupply from "./pages/bitcoin_basics/BitcoinSupply";
 import BitcoinHalving from "./pages/bitcoin_basics/BitcoinHalving";
+import BitcoinBalanceDistribution from "./pages/bitcoin_basics/BitcoinBalanceDistribution";
 
 function App() {
   return (
@@ -55,6 +56,10 @@ function App() {
           <Route
             path="/bitcoin-basics/bitcoin-halving"
             element={<BitcoinHalving />}
+          />
+          <Route
+            path="/bitcoin-basics/bitcoin-balance-distribution"
+            element={<BitcoinBalanceDistribution />}
           />
           <Route path="/market-indicators" element={<MarketIndicators />} />
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />

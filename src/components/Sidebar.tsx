@@ -56,9 +56,8 @@ function Sidebar() {
           </ul>
         </li>
         <li
-          className={
-            pathMatchRoute("/bitcoin-Basics") ? "active" : "notActive"
-          }>
+          className={pathMatchRoute("/bitcoin-Basics") ? "active" : "notActive"}
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/bitcoin-basics")}>
               <i>
@@ -81,7 +80,8 @@ function Sidebar() {
             </li>
             <li>
               <p
-                onClick={() => navigate("/bitcoin-basics/bitcoin-200-week-ma")}>
+                onClick={() => navigate("/bitcoin-basics/bitcoin-200-week-ma")}
+              >
                 200 Week Moving Average Heatmap
               </p>
             </li>
@@ -92,15 +92,15 @@ function Sidebar() {
               <p
                 onClick={() =>
                   navigate("/bitcoin-basics/bitcoin-fear-and-greed")
-                }>
+                }
+              >
                 Fear And Greed Index
               </p>
             </li>
             <li>
               <p
-                onClick={() =>
-                  navigate("/bitcoin-basics/bitcoin-pi-cycle-top")
-                }>
+                onClick={() => navigate("/bitcoin-basics/bitcoin-pi-cycle-top")}
+              >
                 Pi Cycle Top Indicator
               </p>
             </li>
@@ -109,7 +109,8 @@ function Sidebar() {
               <p
                 onClick={() =>
                   navigate("/bitcoin-basics/bitcoin-rainbow-chart")
-                }>
+                }
+              >
                 Bitcoin Rainbow Price Chart Indicator
               </p>
             </li>
@@ -123,12 +124,22 @@ function Sidebar() {
                 Bitcoin Halving
               </p>
             </li>
+            <li>
+              <p
+                onClick={() =>
+                  navigate("/bitcoin-basics/bitcoin-balance-distribution")
+                }
+              >
+                Bitcoin Balance Distribution
+              </p>
+            </li>
           </ul>
         </li>
         <li
           className={
             pathMatchRoute("/market-indicators") ? "active" : "notActive"
-          }>
+          }
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/market-indicators")}>
               <i>
@@ -173,7 +184,8 @@ function Sidebar() {
         <li
           className={
             pathMatchRoute("/on-chain-indicators") ? "active" : "notActive"
-          }>
+          }
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/on-chain-indicators")}>
               <i>
@@ -209,7 +221,8 @@ function Sidebar() {
         <li
           className={
             pathMatchRoute("/economic-indicators") ? "active" : "notActive"
-          }>
+          }
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/economic-indicators")}>
               <i>
@@ -258,7 +271,8 @@ function Sidebar() {
           </ul>
         </li>
         <li
-          className={pathMatchRoute("/transactions") ? "active" : "notActive"}>
+          className={pathMatchRoute("/transactions") ? "active" : "notActive"}
+        >
           <div className="icon-link">
             <p onClick={() => navigate("/transactions")}>
               <i>

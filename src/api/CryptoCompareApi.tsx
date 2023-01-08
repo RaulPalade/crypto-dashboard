@@ -1,4 +1,5 @@
 import axios from "axios";
+import { off } from "process";
 import { ChartData } from "../components/CustomChartJS";
 
 class CryptoCompareApi {
@@ -62,6 +63,42 @@ class CryptoCompareApi {
       );
     } catch (error) {
       console.log(`Error while getting getDailyPairOHLCV: ${error}`);
+      throw error;
+    }
+  }
+
+  public async getLatestBitcoinBalanceDistribution(): Promise<ChartData> {
+    const chartData: ChartData = {
+      values: [],
+      labels: [],
+      legendLabel: "BTC Balance Distribution",
+    };
+    try {
+      const response = await this.api.get(
+        `blockchain/balancedistribution/latest?fsym=BTC`
+      );
+      console.log(response.data.Data.balance_distribution);
+      const distribution: any[] = response.data.Data.balance_distribution;
+      if (distribution === null || distribution.length === 0) {
+        return chartData;
+      }
+
+      const values: number[] = distribution.map((element) => {
+        return element.addressesCount;
+      });
+      const labels: string[] = distribution.map((element) => {
+        return `${element.from}-${element.to} BTC`;
+      });
+
+      chartData.values = values;
+      chartData.labels = labels;
+
+      console.log(chartData);
+      return chartData;
+    } catch (error) {
+      console.log(
+        `Error while getting getLatestBitcoinBalanceDistribution: ${error}`
+      );
       throw error;
     }
   }

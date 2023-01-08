@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import CryptoCompareApi from "../../api/CryptoCompareApi";
 import PieCard from "../../components/PieCard";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
-import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
-import { ChartDataset, Colors } from "chart.js";
-import CustomChartJS, { ChartData } from "../../components/CustomChartJS";
+import { ChartDataset } from "chart.js";
+import CustomChartJS from "../../components/CustomChartJS";
 
 function BitcoinSupply() {
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
@@ -50,25 +48,11 @@ function BitcoinSupply() {
   ];
 
   useEffect(() => {
-    createChartDatasets(data, labels, colors);
+    createChartDatasets(data, colors);
   }, []);
 
-  function createChartDatasets(
-    data: number[],
-    labels: string[],
-    colors: string[]
-  ) {
+  function createChartDatasets(data: number[], colors: string[]) {
     const datasets: any[] = [];
-
-    const customSupplyDataset = data.map((value: number, index: number) => {
-      return {
-        customDataset: {
-          xAxis: labels[index],
-          yAxis: value,
-          label: `${value}`,
-        },
-      };
-    });
 
     datasets.push({
       label: "BTC Supply",
