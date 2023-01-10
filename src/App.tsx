@@ -21,6 +21,9 @@ import BitcoinSupply from "./pages/bitcoin_basics/BitcoinSupply";
 import BitcoinHalving from "./pages/bitcoin_basics/BitcoinHalving";
 import BitcoinBalanceDistribution from "./pages/bitcoin_basics/BitcoinBalanceDistribution";
 
+// Market Indicators
+import RunningROI from "./pages/market_indicators/RunningROI";
+
 function App() {
   return (
     <>
@@ -61,7 +64,13 @@ function App() {
             path="/bitcoin-basics/bitcoin-balance-distribution"
             element={<BitcoinBalanceDistribution />}
           />
+
           <Route path="/market-indicators" element={<MarketIndicators />} />
+          <Route
+            path="/market-indicators/running-roi"
+            element={<RunningROI />}
+          />
+
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />
           <Route path="/economic-indicators" element={<EconomicIndicators />} />
           <Route path="/transactions" element={<Transactions />} />
