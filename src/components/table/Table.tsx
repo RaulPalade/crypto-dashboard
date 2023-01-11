@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import TableBody, { CoinValueInterface } from "../table/TableBody";
+import TableBody, {
+  CoinValueInterface,
+  ModalValueInterface,
+} from "../table/TableBody";
 import TableHead, { Column } from "../table/TableHead";
 
 function Table({
   columns,
   inTableData,
+  chartData,
 }: {
   columns: Column[];
   inTableData: CoinValueInterface[];
+  chartData: ModalValueInterface[];
 }) {
   const [tableData, setTableData] = useState<any>(null);
 
@@ -39,14 +44,16 @@ function Table({
 
   return (
     <>
-      <table className="w-full text-left text-sm text-gray-500 shadow-2xl shadow-lightViolet">
-        <TableHead columns={columns} handleSorting={handleSorting} />
-        {tableData !== null ? (
-          <TableBody columns={columns} tableData={tableData} />
-        ) : (
-          <TableBody columns={columns} tableData={inTableData} />
-        )}
-      </table>
+      {tableData !== null && (
+        <table className="w-full text-left text-sm text-gray-500 shadow-2xl shadow-lightViolet">
+          <TableHead columns={columns} handleSorting={handleSorting} />
+          <TableBody
+            columns={columns}
+            tableData={tableData}
+            chartData={chartData}
+          />
+        </table>
+      )}
     </>
   );
 }

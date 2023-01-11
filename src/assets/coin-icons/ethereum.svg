@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-<svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.1" viewBox="0 0 784.37 1277.4" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-   <g fill-rule="nonzero">
-    <polygon points="392.07 0 383.5 29.11 383.5 873.74 392.07 882.29 784.13 650.54" fill="#343434"/>
-    <polygon points="392.07 0 -0 650.54 392.07 882.29 392.07 472.33" fill="#8C8C8C"/>
-    <polygon points="392.07 956.52 387.24 962.41 387.24 1263.3 392.07 1277.4 784.37 724.89" fill="#3C3C3B"/>
-    <polygon points="392.07 1277.4 392.07 956.52 -0 724.89" fill="#8C8C8C"/>
-    <polygon points="392.07 882.29 784.13 650.54 392.07 472.33" fill="#141414"/>
-    <polygon points="0 650.54 392.07 882.29 392.07 472.33" fill="#393939"/>
-   </g> 
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="60" cy="60" r="60" fill="#EDF0F4"/>
+<path d="M59.8367 24L59.3594 25.6213V72.663L59.8367 73.1392L81.6725 60.2318L59.8367 24Z" fill="#343434"/>
+<path d="M59.8364 24L38 60.2318L59.8364 73.1392V50.3064V24Z" fill="#8C8C8C"/>
+<path d="M59.8364 77.2734L59.5674 77.6015V94.3584L59.8364 95.1437L81.6856 64.3728L59.8364 77.2734Z" fill="#3C3C3B"/>
+<path d="M59.8364 95.1437V77.2734L38 64.3728L59.8364 95.1437Z" fill="#8C8C8C"/>
+<path d="M59.8359 73.1392L81.6717 60.2318L59.8359 50.3064V73.1392Z" fill="#141414"/>
+<path d="M38 60.2318L59.8364 73.1392V50.3064L38 60.2318Z" fill="#393939"/>
 </svg>

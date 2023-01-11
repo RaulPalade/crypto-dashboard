@@ -13,7 +13,10 @@ import Polygon from "../../assets/coin-icons/polygon.svg";
 import Solana from "../../assets/coin-icons/solana.svg";
 import Litecoin from "../../assets/coin-icons/litecoin.svg";
 import Polkadot from "../../assets/coin-icons/polkadot.svg";
-import { CoinValueInterface } from "../../components/table/TableBody";
+import {
+  CoinValueInterface,
+  ModalValueInterface,
+} from "../../components/table/TableBody";
 import { Column } from "../../components/table/TableHead";
 
 function RunningROI() {
@@ -57,8 +60,12 @@ function RunningROI() {
   const [coinListValues, setCoinListValues] = useState<CoinValueInterface[]>(
     []
   );
+  const [chartValues, setChartValues] = useState<ModalValueInterface[]>([]);
 
   useEffect(() => {
+    if (coinListValues.length > 0) {
+      return;
+    }
     const fetchData = async (coinCode: string, coinName: string, icon: any) => {
       try {
         const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
@@ -99,7 +106,24 @@ function RunningROI() {
           ),
         };
 
+        let dataset = {
+          label: `${coinName} price`,
+          data: data.values,
+          backgroundColor: "rgba(30, 34, 45, 1)",
+          borderColor: "rgba(30, 34, 45, 1)",
+          borderWidth: 1,
+          pointBackgroundColor: "#fff",
+          showLine: true,
+          pointRadius: 0,
+        };
+
+        let currentChart: ModalValueInterface = {
+          labels: data.labels,
+          dataset,
+        };
+
         setCoinListValues((prevState) => [...prevState, currentCoin]);
+        setChartValues((prevState) => [...prevState, currentChart]);
       } catch (error) {
         console.log(error);
       }
@@ -121,7 +145,11 @@ function RunningROI() {
     <section className="home-section">
       <div className="home-content">
         <div className="flex flex-col">
-          <Table columns={columns} inTableData={coinListValues} />
+          <Table
+            columns={columns}
+            inTableData={coinListValues}
+            chartData={chartValues}
+          />
         </div>
       </div>
     </section>

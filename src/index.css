@@ -329,3 +329,22 @@ code {
   width: 55vw;
   height: 70vh;
 }
+
+.table-header:hover {
+  cursor: pointer;
+}
+
+.table-header-label:hover {
+  color: #635e9a;
+  transition: all 0.2s ease-in-out;
+}
+
+.table-row:hover {
+  cursor: pointer;
+  background-color: #dbd7ff;
+  transition: all 0.2s ease-in-out;
+}
+
+.x {
+  width: 50vw;
+}
