@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TiArrowUnsorted } from "react-icons/ti";
 
 export interface Column {
@@ -5,21 +6,41 @@ export interface Column {
   accessor: string;
 }
 
-function TableHead({ columns }: { columns: Column[] }) {
+function TableHead({
+  columns,
+  handleSorting,
+}: {
+  columns: Column[];
+  handleSorting: (sortField: string, sortOrder: string) => void;
+}) {
+  const [sortField, setSortField] = useState<string>("");
+  const [order, setOrder] = useState<string>("asc");
+
+  const handleSortingChange = (accessor: string) => {
+    const sortOrder =
+      accessor === sortField && order === "asc" ? "desc" : "asc";
+    setSortField(accessor);
+    setOrder(sortOrder);
+    handleSorting(accessor, sortOrder);
+  };
+
   return (
-    <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+    <thead className="bg-slate-100 text-xs uppercase text-gray-700">
       <tr>
         <th
           scope="col"
-          className="px-6 py-4 text-sm font-medium text-gray-900"></th>
+          className="rounded-tl-lg px-6 py-4 text-sm font-medium text-gray-900"></th>
         {columns
-          .filter((col) => col.label !== "")
-          .map(({ label, accessor }) => {
+          ?.filter((col) => col.label !== "")
+          ?.map(({ label, accessor }) => {
             return (
               <th
                 key={accessor}
+                onClick={() => handleSortingChange(accessor)}
                 scope="col"
-                className=" px-6 py-4 text-sm font-medium text-gray-900">
+                className={`px-6 py-4 text-sm font-medium text-gray-900 ${
+                  accessor === "threeYears" ? "rounded-tr-lg" : ""
+                }`}>
                 <div className="flex items-center">
                   {label}
                   <i>

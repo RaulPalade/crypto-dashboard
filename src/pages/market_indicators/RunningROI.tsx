@@ -121,13 +121,7 @@ function RunningROI() {
     <section className="home-section">
       <div className="home-content">
         <div className="flex flex-col">
-          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-              <div className="relative overflow-x-auto">
-                <Table columns={columns} tableData={coinListValues} />
-              </div>
-            </div>
-          </div>
+          <Table columns={columns} inTableData={coinListValues} />
         </div>
       </div>
     </section>

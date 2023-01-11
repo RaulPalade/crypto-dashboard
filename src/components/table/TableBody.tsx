@@ -1,4 +1,5 @@
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { FaMinus } from "react-icons/fa";
 import { Column } from "../table/TableHead";
 
 export interface CoinValueInterface {
@@ -23,10 +24,13 @@ function TableBody({
 }) {
   return (
     <tbody>
-      {tableData.map((row) => {
+      {tableData?.map((row, index) => {
         return (
-          <tr className="border-b bg-white">
-            <td className="whitespace-nowrap px-6 py-4 text-sm font-medium">
+          <tr className="bg-white" key={index}>
+            <td
+              className={`whitespace-nowrap px-6 py-4 text-sm font-medium ${
+                index === 9 ? "rounded-bl-lg" : ""
+              }`}>
               <div className="flex items-center justify-start">
                 <img
                   src={row.icon}
@@ -41,24 +45,27 @@ function TableBody({
               ${row.price}
             </td>
             {columns
-              .filter(
+              ?.filter(
                 ({ accessor }) => accessor !== "name" && accessor !== "price"
               )
-              .map(({ accessor }) => {
+              ?.map(({ accessor }) => {
+                const dataCol = row[accessor as keyof CoinValueInterface];
                 return (
                   <td
                     key={accessor}
                     className={`whitespace-nowrap px-6 py-4 text-sm font-medium ${
-                      row[accessor as keyof CoinValueInterface] > 0
-                        ? "text-green-500"
-                        : "text-red-600"
+                      dataCol > 0 ? "text-green-500" : "text-red-600"
+                    } ${
+                      accessor === "threeYears" && index === 9
+                        ? "rounded-br-lg"
+                        : ""
                     }`}>
                     <div className="flex items-center justify-center">
-                      {row[accessor as keyof CoinValueInterface]}%
-                      {row[accessor as keyof CoinValueInterface] < 0 ? (
+                      {isFinite(dataCol) ? `${dataCol}%` : <FaMinus />}
+                      {isFinite(dataCol) && dataCol < 0 ? (
                         <IoMdArrowDropdown />
                       ) : (
-                        <IoMdArrowDropup />
+                        isFinite(dataCol) && <IoMdArrowDropup />
                       )}
                     </div>
                   </td>
