@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import CryptoCompareApi from "../../api/CryptoCompareApi";
 import { ChartData } from "../../components/CustomChartJS";
-import TableHead from "../../components/TableHead";
-import TableRow, { CoinValueInterface } from "../../components/TableRow";
+import Table from "../../components/table/Table";
 
 import Bitcoin from "../../assets/coin-icons/bitcoin.svg";
 import Ethereum from "../../assets/coin-icons/ethereum.svg";
@@ -14,8 +13,22 @@ import Polygon from "../../assets/coin-icons/polygon.svg";
 import Solana from "../../assets/coin-icons/solana.svg";
 import Litecoin from "../../assets/coin-icons/litecoin.svg";
 import Polkadot from "../../assets/coin-icons/polkadot.svg";
+import { CoinValueInterface } from "../../components/table/TableBody";
+import { Column } from "../../components/table/TableHead";
 
 function RunningROI() {
+  const columns: Column[] = [
+    { label: "", accessor: "name" },
+    { label: "Price", accessor: "price" },
+    { label: "1 Day", accessor: "oneDay" },
+    { label: "7 Days", accessor: "sevenDays" },
+    { label: "30 Days", accessor: "thirtyDays" },
+    { label: "90 Days", accessor: "ninetyDays" },
+    { label: "1 Year", accessor: "oneYear" },
+    { label: "2 Years", accessor: "twoYears" },
+    { label: "3 Years", accessor: "threeYears" },
+  ];
+
   enum Coins {
     BTC = "Bitcoin",
     ETH = "Ethereum",
@@ -62,7 +75,7 @@ function RunningROI() {
         let currentCoin: CoinValueInterface = {
           coinName,
           icon,
-          price: todayPrice,
+          price: Number(todayPrice.toFixed(2)),
           oneDay: Number(
             percentageChange(prices[size - 2], todayPrice).toFixed(1)
           ),
@@ -111,14 +124,7 @@ function RunningROI() {
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
               <div className="relative overflow-x-auto">
-                <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-                  <TableHead />
-                  <tbody>
-                    {coinListValues?.map((coin) => {
-                      return <TableRow {...coin} />;
-                    })}
-                  </tbody>
-                </table>
+                <Table columns={columns} tableData={coinListValues} />
               </div>
             </div>
           </div>
