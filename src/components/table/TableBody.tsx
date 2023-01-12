@@ -37,9 +37,16 @@ function TableBody({
   tableData: CoinValueInterface[];
   chartData: ModalValueInterface[];
 }) {
-  const [showModal, setShowModal] = useState(false);
   const [coinIndex, setCoinIndex] = useState<number>(0);
   const [icon, setIcon] = useState<any>(null);
+
+  const openModalBtn = document.getElementById("unfold");
+  const modalContainer = document.getElementById("modal-container");
+
+  const openModal = () => {
+    modalContainer?.removeAttribute("class");
+    modalContainer?.classList.add(openModalBtn!!.id);
+  };
 
   return (
     <>
@@ -47,10 +54,11 @@ function TableBody({
         {tableData?.map((row, index) => {
           return (
             <tr
+              id="unfold"
               onClick={() => {
-                setShowModal(true);
                 setIcon(row.icon);
                 setCoinIndex(index);
+                openModal();
               }}
               className="table-row bg-white"
               data-modal-target="defaultModal"
@@ -103,13 +111,7 @@ function TableBody({
           );
         })}
       </tbody>
-      {showModal ? (
-        <Modal
-          setShowModal={setShowModal}
-          chartData={chartData[coinIndex]}
-          icon={icon}
-        />
-      ) : null}
+      <Modal chartData={chartData[coinIndex]} icon={icon} />
     </>
   );
 }
