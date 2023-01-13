@@ -18,6 +18,7 @@ import {
   ModalValueInterface,
 } from "../../components/table/TableBody";
 import { Column } from "../../components/table/TableHead";
+import Header from "../../components/Header";
 
 function RunningROI() {
   const columns: Column[] = [
@@ -143,8 +144,11 @@ function RunningROI() {
 
   return (
     <section className="home-section">
-      <div className="home-content">
-        <div className="flex flex-col">
+      <div className="home-content flex flex-col items-center p-8">
+        <div>
+          <Header text="Running ROI" />
+        </div>
+        <div className="mt-8">
           <Table
             columns={columns}
             inTableData={coinListValues}
