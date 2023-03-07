@@ -86,9 +86,6 @@ function Sidebar() {
               </p>
             </li>
             <li>
-              <p>Stock-to-Flow Model</p>
-            </li>
-            <li>
               <p
                 onClick={() =>
                   navigate("/bitcoin-basics/bitcoin-fear-and-greed")
@@ -161,15 +158,6 @@ function Sidebar() {
               <p>Monthly returns</p>
             </li>
             <li>
-              <p>Average Daily Returns</p>
-            </li>
-            <li>
-              <p>Monthly Average ROI</p>
-            </li>
-            <li>
-              <p>ROI Bands</p>
-            </li>
-            <li>
               <p>Bull Market Support Bands</p>
             </li>
             <li>
@@ -180,7 +168,7 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li
+        {/* <li
           className={
             pathMatchRoute("/on-chain-indicators") ? "active" : "notActive"
           }>
@@ -215,8 +203,8 @@ function Sidebar() {
               <p>Realized Price</p>
             </li>
           </ul>
-        </li>
-        <li
+        </li> */}
+        {/* <li
           className={
             pathMatchRoute("/economic-indicators") ? "active" : "notActive"
           }>
@@ -266,7 +254,7 @@ function Sidebar() {
               <p>Nonfarm Payroll</p>
             </li>
           </ul>
-        </li>
+        </li> */}
         <li
           className={pathMatchRoute("/transactions") ? "active" : "notActive"}>
           <div className="icon-link">

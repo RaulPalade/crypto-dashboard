@@ -1,5 +1,6 @@
 import axios from "axios";
 import { off } from "process";
+import { ArbitrageInfo } from "../components/ArbitrageCard";
 import { ChartData } from "../components/CustomChartJS";
 
 class CryptoCompareApi {
@@ -101,6 +102,36 @@ class CryptoCompareApi {
     } catch (error) {
       console.log(
         `Error while getting getLatestBitcoinBalanceDistribution: ${error}`
+      );
+      throw error;
+    }
+  }
+
+  public async getTopExchangesVolumeDataByPair(
+    coin: string
+  ): Promise<ArbitrageInfo[]> {
+    try {
+      const response = await this.api.get(
+        `https://min-api.cryptocompare.com/data/top/exchanges?fsym=${coin}&tsym=USD`
+      );
+      console.log(response.data.Data);
+
+      let echangesInfo: ArbitrageInfo[] = [];
+
+      response.data.Data.forEach((exchange: any) => {
+        let coinData: ArbitrageInfo = {
+          price: Number(exchange.price.toFixed(2)),
+          volume: Number(exchange.volume24h.toFixed(2)),
+          exchangeGrade: exchange.exchangeGrade,
+        };
+        echangesInfo.push(coinData);
+      });
+
+      return echangesInfo;
+    } catch (error) {
+      console.log(
+        "Error while getting getTopExchangesVolumeDataByPair:",
+        error
       );
       throw error;
     }
