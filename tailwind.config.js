@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     screens: {
       sm: "480px",
+      xsm: "550px",
       md: "768px",
       lg: "976px",
       xs: "1100px",
@@ -14,7 +15,7 @@ module.exports = {
       colors: {
         lightViolet: "#635e9a",
       },
-    }
+    },
   },
   plugins: [],
 };

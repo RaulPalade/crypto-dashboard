@@ -1,6 +1,6 @@
 import axios from "axios";
 import { off } from "process";
-import { ArbitrageInfo } from "../components/ArbitrageCard";
+import { ExchangeInfo } from "../components/arbitrage/ArbitrageCard";
 import { ChartData } from "../components/CustomChartJS";
 
 class CryptoCompareApi {
@@ -109,25 +109,29 @@ class CryptoCompareApi {
 
   public async getTopExchangesVolumeDataByPair(
     coin: string
-  ): Promise<ArbitrageInfo[]> {
+  ): Promise<ExchangeInfo[]> {
     try {
       const response = await this.api.get(
         `https://min-api.cryptocompare.com/data/top/exchanges?fsym=${coin}&tsym=USD`
       );
       console.log(response.data.Data);
 
-      let echangesInfo: ArbitrageInfo[] = [];
+      let exchangeInfo: ExchangeInfo[] = [];
 
       response.data.Data.forEach((exchange: any) => {
-        let coinData: ArbitrageInfo = {
+        let coinData: ExchangeInfo = {
+          logo: null,
+          name: exchange.exchange,
           price: Number(exchange.price.toFixed(2)),
           volume: Number(exchange.volume24h.toFixed(2)),
           exchangeGrade: exchange.exchangeGrade,
         };
-        echangesInfo.push(coinData);
+        exchangeInfo.push(coinData);
       });
 
-      return echangesInfo;
+      console.log(exchangeInfo);
+
+      return exchangeInfo;
     } catch (error) {
       console.log(
         "Error while getting getTopExchangesVolumeDataByPair:",
