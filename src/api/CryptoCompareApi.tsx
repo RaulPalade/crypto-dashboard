@@ -2,6 +2,7 @@ import axios from "axios";
 import { off } from "process";
 import { ExchangeInfo } from "../components/arbitrage/ArbitrageCard";
 import { ChartData } from "../components/CustomChartJS";
+import { MiningInfo } from "../components/mining/MiningCard";
 
 class CryptoCompareApi {
   private api: any;
@@ -137,6 +138,38 @@ class CryptoCompareApi {
         "Error while getting getTopExchangesVolumeDataByPair:",
         error
       );
+      throw error;
+    }
+  }
+
+  public async getMiningInfo(listOfCoins: string): Promise<MiningInfo[]> {
+    try {
+      const response = await this.api.get(
+        `https://min-api.cryptocompare.com/data/blockchain/mining/calculator?fsyms=${listOfCoins}&tsyms=USD`
+      );
+      console.log(response.data.Data["BTC"]);
+      let data = response.data.Data;
+      const coins = listOfCoins.split(",").map((coin) => coin.trim());
+
+      let miningInfo: MiningInfo[] = [];
+
+      coins.forEach((coin) => {
+        let currentMiningInfo: MiningInfo = {
+          logo: null,
+          name: data[coin].CoinInfo.FullName,
+          netHashes: data[coin].CoinInfo.NetHashesPerSecond,
+          blockNumber: data[coin].CoinInfo.BlockNumber,
+          blockTime: data[coin].CoinInfo.BlockTime,
+          blockReward: data[coin].CoinInfo.BlockReward,
+          totalCoinsMined: data[coin].CoinInfo.TotalCoinsMined,
+          maxSupply: data[coin].CoinInfo.MaxSupply,
+        };
+        miningInfo.push(currentMiningInfo);
+      });
+
+      return miningInfo;
+    } catch (error) {
+      console.log("Error while getting mining info:", error);
       throw error;
     }
   }
