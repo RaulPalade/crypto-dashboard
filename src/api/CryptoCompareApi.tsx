@@ -27,6 +27,12 @@ class CryptoCompareApi {
     return formattedDate;
   };
 
+  toScientificNotation = (num: number): string => {
+    const exponent = num.toFixed(0).length - 1; // determina l'esponente
+    const mantissa = (num / Math.pow(10, exponent)).toFixed(2); // determina la mantissa
+    return mantissa.toString() + "E+" + exponent.toString(); // restituisce la notazione scientifica
+  };
+
   public async getDailyPairOHLCV(
     fromSymbol: string,
     toSymbol: string,
@@ -154,17 +160,27 @@ class CryptoCompareApi {
       let miningInfo: MiningInfo[] = [];
 
       coins.forEach((coin) => {
-        let currentMiningInfo: MiningInfo = {
+        let currentCoin = data[coin].CoinInfo;
+        let newMiningInfo: MiningInfo = {
           logo: null,
-          name: data[coin].CoinInfo.FullName,
-          netHashes: data[coin].CoinInfo.NetHashesPerSecond,
-          blockNumber: data[coin].CoinInfo.BlockNumber,
-          blockTime: data[coin].CoinInfo.BlockTime,
-          blockReward: data[coin].CoinInfo.BlockReward,
-          totalCoinsMined: data[coin].CoinInfo.TotalCoinsMined,
-          maxSupply: data[coin].CoinInfo.MaxSupply,
+          name: currentCoin.FullName,
+          netHashes:
+            currentCoin.NetHashesPerSecond === 0
+              ? "0"
+              : this.toScientificNotation(currentCoin.NetHashesPerSecond),
+          blockNumber: currentCoin.BlockNumber,
+          blockTime: Number.isInteger(currentCoin.BlockTime)
+            ? currentCoin.BlockTime
+            : currentCoin.BlockTime.toFixed(2),
+          blockReward: Number.isInteger(currentCoin.BlockReward)
+            ? currentCoin.BlockReward
+            : currentCoin.BlockReward.toFixed(2),
+          totalCoinsMined: Number.isInteger(currentCoin.TotalCoinsMined)
+            ? currentCoin.TotalCoinsMined
+            : currentCoin.TotalCoinsMined.toFixed(2),
+          maxSupply: this.toScientificNotation(currentCoin.MaxSupply),
         };
-        miningInfo.push(currentMiningInfo);
+        miningInfo.push(newMiningInfo);
       });
 
       return miningInfo;

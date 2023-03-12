@@ -3,12 +3,12 @@ import Bitcoin from "../../assets/coin-icons/bitcoin.svg";
 export interface MiningInfo {
   logo: any;
   name: string;
-  netHashes: number;
+  netHashes: string;
   blockNumber: number;
   blockTime: number;
   blockReward: number;
   totalCoinsMined: number;
-  maxSupply: number;
+  maxSupply: string;
 }
 
 function MiningCard({ miningInfo }: { miningInfo: MiningInfo }) {
@@ -23,7 +23,7 @@ function MiningCard({ miningInfo }: { miningInfo: MiningInfo }) {
           <p className="py-4 pl-6 font-medium">Net Hashes /Sec</p>
         </div>
         <div className="flex justify-end">
-          <p className="py-4 pr-6">3.4E+29</p>
+          <p className="py-4 pr-6">{miningInfo.netHashes}</p>
         </div>
         <div className="flex justify-start">
           <p className="py-3 pl-6 font-medium">Block Number</p>
@@ -53,7 +53,7 @@ function MiningCard({ miningInfo }: { miningInfo: MiningInfo }) {
           <p className="py-3 pl-6 font-medium">Max Supply</p>
         </div>
         <div className="flex justify-end">
-          <p className="py-4 pr-6">2.1E+16</p>
+          <p className="py-4 pr-6">{miningInfo.maxSupply}</p>
         </div>
       </div>
     </div>

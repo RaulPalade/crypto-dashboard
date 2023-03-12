@@ -50,7 +50,7 @@ function Mining() {
       <div className="home-content flex flex-col">
         <h1 className="p-10 text-5xl text-white">Mining</h1>
 
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 gap-14 py-16 md:grid-cols-2 lg:grid-cols-3  ">
           {miningInfo?.map((mining) => {
             return <MiningCard miningInfo={mining} />;
           })}
