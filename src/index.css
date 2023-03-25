@@ -433,7 +433,7 @@ body.modal-active {
 .exterior-card {
   min-width: 240px;
   min-height: 335px;
-  background: linear-gradient(270deg, #38f9d7 0%, #43e97b 100%);
+  background: linear-gradient(225deg, #b5f0ff 0%, #dfddff 100%);
   box-shadow: 5px 10px 20px rgba(255, 255, 255, 0.2);
   border-radius: 32px;
 }
