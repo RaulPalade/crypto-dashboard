@@ -1,0 +1,10 @@
+.pie-chart-container canvas {
+  width: 85% !important;
+  height: 100% !important;
+}
+
+.chart-container {
+  margin: auto;
+  width: 55vw;
+  height: 70vh;
+}
