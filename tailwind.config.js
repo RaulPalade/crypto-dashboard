@@ -2,7 +2,20 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    screens: {
+      sm: "480px",
+      xsm: "550px",
+      md: "768px",
+      lg: "976px",
+      xs: "1100px",
+      xm: "1200px",
+      xl: "1440px",
+    },
+    extend: {
+      colors: {
+        lightViolet: "#635e9a",
+      },
+    },
   },
   plugins: [],
 };
