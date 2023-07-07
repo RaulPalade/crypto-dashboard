@@ -4,9 +4,15 @@ import { ExchangeInfo } from "../components/arbitrage/ArbitrageCard";
 import { ChartData } from "../components/CustomChartJS";
 import { MiningInfo } from "../components/mining/MiningCard";
 
+/**
+ * Classe che rappresenta un'API per l'accesso ai dati di CryptoCompare.
+ */
 class CryptoCompareApi {
   private api: any;
 
+  /**
+   * Crea un'istanza di CryptoCompareApi.
+   */
   constructor() {
     this.api = axios.create({
       baseURL: "https://min-api.cryptocompare.com/data",
@@ -18,25 +24,49 @@ class CryptoCompareApi {
     });
   }
 
-  convertTimestampToDate = (timestamp: number) => {
+  /**
+   * Converte un timestamp in una data nel formato "giorno/mese/anno".
+   *
+   * @param {number} timestamp - Il timestamp da convertire.
+   * @returns {string} La data formattata nel formato "giorno/mese/anno".
+   */
+  convertTimestampToDate = (timestamp: number): string => {
     const date = new Date(timestamp * 1000);
     const day = date.getDate();
-    const month = date.getMonth() + 1; // months are zero-based
+    const month = date.getMonth() + 1; // i mesi partono da 0
     const year = date.getFullYear();
     const formattedDate = `${day}/${month}/${year}`;
     return formattedDate;
   };
 
+  /**
+   * Converte un numero in notazione scientifica.
+   *
+   * @param {number} num - Il numero da convertire.
+   * @returns {string} Il numero convertito in notazione scientifica.
+   */
   toScientificNotation = (num: number): string => {
     const exponent = num.toFixed(0).length - 1; // determina l'esponente
     const mantissa = (num / Math.pow(10, exponent)).toFixed(2); // determina la mantissa
     return mantissa.toString() + "E+" + exponent.toString(); // restituisce la notazione scientifica
   };
 
+  /**
+   * Ottiene i dati OHLCV (apertura, massimo, minimo, chiusura e volume giornaliero) di una coppia di valute per un determinato periodo di tempo.
+   *
+   * @param {string} fromSymbol - Simbolo della valuta di origine.
+   * @param {string} toSymbol - Simbolo della valuta di destinazione.
+   * @param {number} limit - Il numero massimo di punti dati da ottenere.
+   * @param {number} recursiveCalls - Il numero massimo di chiamate ricorsive per ottenere dati più vecchi.
+   * @param {ChartData} chartData - I dati della tabella del grafico da aggiornare.
+   * @param {number} toTs - Timestamp fino al quale ottenere i dati.
+   * @returns {Promise<ChartData>} I dati aggiornati della tabella del grafico.
+   * @throws {Error} Se si verifica un errore durante la richiesta API.
+   */
   public async getDailyPairOHLCV(
     fromSymbol: string,
     toSymbol: string,
-    limit: number = 1500, // 1500 * 3 calls = 12 years of data
+    limit: number = 1500,
     recursiveCalls: number = 2,
     chartData: ChartData = { values: [], labels: [], legendLabel: fromSymbol },
     toTs?: number
@@ -75,6 +105,12 @@ class CryptoCompareApi {
     }
   }
 
+  /**
+   * Ottiene i dati sulla distribuzione del saldo Bitcoin più recenti.
+   *
+   * @returns {Promise<ChartData>} I dati sulla distribuzione del saldo Bitcoin.
+   * @throws {Error} Se si verifica un errore durante la richiesta API.
+   */
   public async getLatestBitcoinBalanceDistribution(): Promise<ChartData> {
     const chartData: ChartData = {
       values: [],
@@ -114,6 +150,13 @@ class CryptoCompareApi {
     }
   }
 
+  /**
+   * Ottiene i dati sul volume delle principali borse per una determinata coppia di valute.
+   *
+   * @param {string} coin - Simbolo della valuta.
+   * @returns {Promise<ExchangeInfo[]>} I dati sul volume delle principali borse.
+   * @throws {Error} Se si verifica un errore durante la richiesta API.
+   */
   public async getTopExchangesVolumeDataByPair(
     coin: string
   ): Promise<ExchangeInfo[]> {
@@ -148,6 +191,13 @@ class CryptoCompareApi {
     }
   }
 
+  /**
+   * Ottiene le informazioni sul mining per una lista di monete.
+   *
+   * @param {string} listOfCoins - Elenco delle monete separate da virgola.
+   * @returns {Promise<MiningInfo[]>} Le informazioni sul mining delle monete.
+   * @throws {Error} Se si verifica un errore durante la richiesta API.
+   */
   public async getMiningInfo(listOfCoins: string): Promise<MiningInfo[]> {
     try {
       const response = await this.api.get(
