@@ -1,28 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './App.css'
+import Sidebar from './components/Sidebar'
 
-import Home from "./pages/Home";
-import BitcoinBasics from "./pages/BitcoinBasics";
-import MarketIndicators from "./pages/MarketIndicators";
-import EconomicIndicators from "./pages/EconomicIndicators";
-import Transactions from "./pages/Transactions";
-import Mining from "./pages/Mining";
-import Arbitrage from "./pages/Arbitrage";
-import News from "./pages/News";
-import Settings from "./pages/Settings";
-import OnChainIndicators from "./pages/OnChainIndicators";
-import Bitcoin2YearMa from "./pages/bitcoin_basics/Bitcoin2YearMA";
-import Bitcoin200WeekMAHeatmap from "./pages/bitcoin_basics/Bitcoin200WeekMAHeatmap";
-import BitcoinFearAndGreedIndex from "./pages/bitcoin_basics/BitcoinFearAndGreedIndex";
-import BitcoinPiCycleTop from "./pages/bitcoin_basics/BitcoinPiCycleTop";
-import BitcoinRainbowChart from "./pages/bitcoin_basics/BitcoinRainbowChart";
-import BitcoinSupply from "./pages/bitcoin_basics/BitcoinSupply";
-import BitcoinHalving from "./pages/bitcoin_basics/BitcoinHalving";
-import BitcoinBalanceDistribution from "./pages/bitcoin_basics/BitcoinBalanceDistribution";
+import Home from './pages/Home'
+import BitcoinBasics from './pages/BitcoinBasics'
+import MarketIndicators from './pages/MarketIndicators'
+import EconomicIndicators from './pages/EconomicIndicators'
+import Transactions from './pages/Transactions'
+import Mining from './pages/Mining'
+import Arbitrage from './pages/Arbitrage'
+import News from './pages/News'
+import Settings from './pages/Settings'
+import OnChainIndicators from './pages/OnChainIndicators'
+import Bitcoin2YearMa from './pages/bitcoin_basics/Bitcoin2YearMA'
+import Bitcoin200WeekMAHeatmap from './pages/bitcoin_basics/Bitcoin200WeekMAHeatmap'
+import BitcoinFearAndGreedIndex from './pages/bitcoin_basics/BitcoinFearAndGreedIndex'
+import BitcoinPiCycleTop from './pages/bitcoin_basics/BitcoinPiCycleTop'
+import BitcoinRainbowChart from './pages/bitcoin_basics/BitcoinRainbowChart'
+import BitcoinSupply from './pages/bitcoin_basics/BitcoinSupply'
+import BitcoinHalving from './pages/bitcoin_basics/BitcoinHalving'
+import BitcoinBalanceDistribution from './pages/bitcoin_basics/BitcoinBalanceDistribution'
 
 // Market Indicators
-import RunningROI from "./pages/market_indicators/RunningROI";
+import RunningROI from './pages/market_indicators/RunningROI'
+import BitcoinBullMarketSupportBands from './pages/market_indicators/BitcoinBullMarketSupportBands'
 
 function App() {
   return (
@@ -70,6 +71,10 @@ function App() {
             path="/market-indicators/running-roi"
             element={<RunningROI />}
           />
+          <Route
+            path="/market-indicators/bull-market-support-bands"
+            element={<BitcoinBullMarketSupportBands />}
+          />
 
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />
           <Route path="/economic-indicators" element={<EconomicIndicators />} />
@@ -81,7 +86,7 @@ function App() {
         </Routes>
       </Router>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
