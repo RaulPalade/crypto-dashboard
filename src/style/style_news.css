@@ -45,15 +45,15 @@
   color: #fafafa;
 }
 
-.tag-brown {
-  background: #d1913c;
-  background: linear-gradient(to bottom, #ffd194, #d1913c);
+.tag-green {
+  background: #237b00;
+  background: linear-gradient(to bottom, #a8f18b, #237b00);
   color: #fafafa;
 }
 
 .tag-red {
   background: #cb2d3e;
-  background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+  background: linear-gradient(to bottom, #ffa39d, #cb2d3e);
   color: #fafafa;
 }
 
@@ -61,6 +61,18 @@
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: capitalize;
+  white-space: nowrap; /* Per evitare che il testo vada a capo */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Mostra "..." se il testo è troppo lungo */
+}
+
+.card-news-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limita a 3 righe */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* Imposta l'altezza massima a 4.8rem (3 righe di 1.6rem) */
+  max-height: 6rem;
 }
 
 .card-news-footer {

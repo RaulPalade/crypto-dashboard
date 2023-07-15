@@ -1,6 +1,10 @@
 import { NewsData } from "../../api/PrivateServerApi";
 
 function NewsCardVertical({ newsData }: { newsData: NewsData }) {
+  const tagColors = ["tag-red", "tag-green", "tag-blue"];
+
+  const randomIndex = Math.floor(Math.random() * tagColors.length);
+
   return (
     <a href={newsData.url}>
       <div className="card-news">
@@ -13,7 +17,9 @@ function NewsCardVertical({ newsData }: { newsData: NewsData }) {
           />
         </div>
         <div className="card-news-body">
-          <span className="tag tag-red">{newsData.source}</span>
+          <span className={`tag ${tagColors[randomIndex]}`}>
+            {newsData.source}
+          </span>
           <h4>{newsData.title}</h4>
           <p>{newsData.description}</p>
         </div>
