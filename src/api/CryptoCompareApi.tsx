@@ -1,5 +1,4 @@
 import axios from "axios";
-import { off } from "process";
 import { ExchangeInfo } from "../components/arbitrage/ArbitrageCard";
 import { ChartData } from "../components/CustomChartJS";
 import { MiningInfo } from "../components/mining/MiningCard";
@@ -203,7 +202,6 @@ class CryptoCompareApi {
       const response = await this.api.get(
         `https://min-api.cryptocompare.com/data/blockchain/mining/calculator?fsyms=${listOfCoins}&tsyms=USD`
       );
-      console.log(response.data.Data["BTC"]);
       let data = response.data.Data;
       const coins = listOfCoins.split(",").map((coin) => coin.trim());
 
