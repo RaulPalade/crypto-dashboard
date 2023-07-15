@@ -1,37 +1,37 @@
-import { useNavigate, useLocation } from 'react-router-dom'
-import { MdOutlineDashboard } from 'react-icons/md'
-import { TbCurrencyBitcoin, TbArrowsRightLeft } from 'react-icons/tb'
-import { AiOutlineLineChart } from 'react-icons/ai'
-import { BsBank } from 'react-icons/bs'
-import { GiMining } from 'react-icons/gi'
-import { ImNewspaper } from 'react-icons/im'
-import { RiExchangeDollarLine } from 'react-icons/ri'
-import { FiSettings } from 'react-icons/fi'
-import { IoIosArrowDown } from 'react-icons/io'
-import { SiHiveBlockchain } from 'react-icons/si'
+import { useNavigate, useLocation } from "react-router-dom";
+import { MdOutlineDashboard } from "react-icons/md";
+import { TbCurrencyBitcoin, TbArrowsRightLeft } from "react-icons/tb";
+import { AiOutlineLineChart } from "react-icons/ai";
+import { BsBank } from "react-icons/bs";
+import { GiMining } from "react-icons/gi";
+import { ImNewspaper } from "react-icons/im";
+import { RiExchangeDollarLine } from "react-icons/ri";
+import { FiSettings } from "react-icons/fi";
+import { IoIosArrowDown } from "react-icons/io";
+import { SiHiveBlockchain } from "react-icons/si";
 
-import Logo from '../assets/logo_crypto.png'
-import ProfileImage from '../assets/profile-image.jpg'
+import Logo from "../assets/logo_crypto.png";
+import ProfileImage from "../assets/profile-image.jpg";
 
 function Sidebar() {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const pathMatchRoute = (route: any) => {
     if (route === location.pathname) {
-      return true
+      return true;
     }
-  }
+  };
 
   const toggleSidebar = () => {
-    let sidebar = document.querySelector('.sidebar') as HTMLElement
-    sidebar.classList.toggle('close')
-  }
+    let sidebar = document.querySelector(".sidebar") as HTMLElement;
+    sidebar.classList.toggle("close");
+  };
 
   const showMenu = (e: any) => {
-    let arrowParent = e.target.parentElement.parentElement.parentElement //selecting main parent of arrow
-    arrowParent.classList.toggle('showMenu')
-  }
+    let arrowParent = e.target.parentElement.parentElement.parentElement; //selecting main parent of arrow
+    arrowParent.classList.toggle("showMenu");
+  };
 
   return (
     <div className="sidebar close">
@@ -42,8 +42,8 @@ function Sidebar() {
         <span className="logo_name">CryptoVision</span>
       </div>
       <ul className="nav-links">
-        <li className={pathMatchRoute('/') ? 'active' : 'notActive'}>
-          <p onClick={() => navigate('/')}>
+        <li className={pathMatchRoute("/") ? "active" : "notActive"}>
+          <p onClick={() => navigate("/")}>
             <i>
               <MdOutlineDashboard size={28} />
             </i>
@@ -56,10 +56,10 @@ function Sidebar() {
           </ul>
         </li>
         <li
-          className={pathMatchRoute('/bitcoin-Basics') ? 'active' : 'notActive'}
+          className={pathMatchRoute("/bitcoin-Basics") ? "active" : "notActive"}
         >
           <div className="icon-link">
-            <p onClick={() => navigate('/bitcoin-basics')}>
+            <p onClick={() => navigate("/bitcoin-basics")}>
               <i>
                 <TbCurrencyBitcoin size={28} />
               </i>
@@ -74,13 +74,13 @@ function Sidebar() {
               <p className="link_name">Bitcoin Basics</p>
             </li>
             <li>
-              <p onClick={() => navigate('/bitcoin-basics/bitcoin-2-year-ma')}>
+              <p onClick={() => navigate("/bitcoin-basics/bitcoin-2-year-ma")}>
                 Bitcoin Investor Tool: 2-year MA Multiplier
               </p>
             </li>
             <li>
               <p
-                onClick={() => navigate('/bitcoin-basics/bitcoin-200-week-ma')}
+                onClick={() => navigate("/bitcoin-basics/bitcoin-200-week-ma")}
               >
                 200 Week Moving Average Heatmap
               </p>
@@ -88,7 +88,7 @@ function Sidebar() {
             <li>
               <p
                 onClick={() =>
-                  navigate('/bitcoin-basics/bitcoin-fear-and-greed')
+                  navigate("/bitcoin-basics/bitcoin-fear-and-greed")
                 }
               >
                 Fear And Greed Index
@@ -96,7 +96,7 @@ function Sidebar() {
             </li>
             <li>
               <p
-                onClick={() => navigate('/bitcoin-basics/bitcoin-pi-cycle-top')}
+                onClick={() => navigate("/bitcoin-basics/bitcoin-pi-cycle-top")}
               >
                 Pi Cycle Top Indicator
               </p>
@@ -105,26 +105,26 @@ function Sidebar() {
             <li>
               <p
                 onClick={() =>
-                  navigate('/bitcoin-basics/bitcoin-rainbow-chart')
+                  navigate("/bitcoin-basics/bitcoin-rainbow-chart")
                 }
               >
                 Bitcoin Rainbow Price Chart Indicator
               </p>
             </li>
             <li>
-              <p onClick={() => navigate('/bitcoin-basics/bitcoin-supply')}>
+              <p onClick={() => navigate("/bitcoin-basics/bitcoin-supply")}>
                 Bitcoin Supply
               </p>
             </li>
             <li>
-              <p onClick={() => navigate('/bitcoin-basics/bitcoin-halving')}>
+              <p onClick={() => navigate("/bitcoin-basics/bitcoin-halving")}>
                 Bitcoin Halving
               </p>
             </li>
             <li>
               <p
                 onClick={() =>
-                  navigate('/bitcoin-basics/bitcoin-balance-distribution')
+                  navigate("/bitcoin-basics/bitcoin-balance-distribution")
                 }
               >
                 Bitcoin Balance Distribution
@@ -134,11 +134,11 @@ function Sidebar() {
         </li>
         <li
           className={
-            pathMatchRoute('/market-indicators') ? 'active' : 'notActive'
+            pathMatchRoute("/market-indicators") ? "active" : "notActive"
           }
         >
           <div className="icon-link">
-            <p onClick={() => navigate('/market-indicators')}>
+            <p onClick={() => navigate("/market-indicators")}>
               <i>
                 <AiOutlineLineChart size={28} />
               </i>
@@ -153,17 +153,19 @@ function Sidebar() {
               <p className="link_name">Market Indicators</p>
             </li>
             <li>
-              <p onClick={() => navigate('/market-indicators/running-roi')}>
+              <p onClick={() => navigate("/market-indicators/running-roi")}>
                 Running ROI
               </p>
             </li>
             <li>
-              <p>Monthly returns</p>
+              <p onClick={() => navigate("/market-indicators/monthly-returns")}>
+                Monthly returns
+              </p>
             </li>
             <li>
               <p
                 onClick={() =>
-                  navigate('/market-indicators/bull-market-support-bands')
+                  navigate("/market-indicators/bull-market-support-bands")
                 }
               >
                 Bull Market Support Bands
@@ -265,10 +267,10 @@ function Sidebar() {
           </ul>
         </li> */}
         <li
-          className={pathMatchRoute('/transactions') ? 'active' : 'notActive'}
+          className={pathMatchRoute("/transactions") ? "active" : "notActive"}
         >
           <div className="icon-link">
-            <p onClick={() => navigate('/transactions')}>
+            <p onClick={() => navigate("/transactions")}>
               <i>
                 <TbArrowsRightLeft size={28} />
               </i>
@@ -293,8 +295,8 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li className={pathMatchRoute('/mining') ? 'active' : 'notActive'}>
-          <p onClick={() => navigate('/mining')}>
+        <li className={pathMatchRoute("/mining") ? "active" : "notActive"}>
+          <p onClick={() => navigate("/mining")}>
             <i>
               <GiMining size={28} />
             </i>
@@ -306,8 +308,8 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li className={pathMatchRoute('/arbitrage') ? 'active' : 'notActive'}>
-          <p onClick={() => navigate('/arbitrage')}>
+        <li className={pathMatchRoute("/arbitrage") ? "active" : "notActive"}>
+          <p onClick={() => navigate("/arbitrage")}>
             <i>
               <RiExchangeDollarLine size={28} />
             </i>
@@ -319,8 +321,8 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li className={pathMatchRoute('/news') ? 'active' : 'notActive'}>
-          <p onClick={() => navigate('/news')}>
+        <li className={pathMatchRoute("/news") ? "active" : "notActive"}>
+          <p onClick={() => navigate("/news")}>
             <i>
               <ImNewspaper size={28} />
             </i>
@@ -332,8 +334,8 @@ function Sidebar() {
             </li>
           </ul>
         </li>
-        <li className={pathMatchRoute('/settings') ? 'active' : 'notActive'}>
-          <p onClick={() => navigate('/settings')}>
+        <li className={pathMatchRoute("/settings") ? "active" : "notActive"}>
+          <p onClick={() => navigate("/settings")}>
             <i>
               <FiSettings size={28} />
             </i>
@@ -359,7 +361,7 @@ function Sidebar() {
         </li>
       </ul>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

@@ -76,6 +76,7 @@ class CryptoCompareApi {
           toTs ? `&toTs=${toTs}` : ""
         }`
       );
+
       const values: number[] = response.data.Data.Data.map(
         (obj: { close: number }) => obj.close
       );

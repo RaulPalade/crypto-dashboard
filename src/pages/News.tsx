@@ -12,7 +12,9 @@ function News() {
   const fetchData = async () => {
     try {
       const data: NewsData[] = await PrivateServerApi.getNews();
-      setNews(data);
+
+      const reversedData = data.reverse();
+      setNews(reversedData);
     } catch (error) {
       console.log(error);
     }
