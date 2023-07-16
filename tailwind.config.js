@@ -14,6 +14,11 @@ module.exports = {
     extend: {
       colors: {
         lightViolet: "#635e9a",
+        lightGreen: "#17B794",
+        lightRed: "#F05454",
+      },
+      fontSize: {
+        cc: "10px",
       },
     },
   },

@@ -10,8 +10,8 @@ function TableHeadMonthlyReturns({ columns }: { columns: String[] }) {
           return (
             <th
               scope="col"
-              className="table-header-label px-6 py-4 text-xs font-medium
-              text-gray-900"
+              className={`table-header-label text-gray-900" px-6 py-4 text-xs
+              font-medium ${column === "December" ? "rounded-tr-lg" : ""}`}
             >
               <div className="flex items-center">{column}</div>
             </th>

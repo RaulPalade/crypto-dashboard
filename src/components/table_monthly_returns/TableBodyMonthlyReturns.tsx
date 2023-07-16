@@ -3,28 +3,28 @@ function TableBodyMonthlyReturns({
 }: {
   tableData: Map<number, number[]>;
 }) {
-  function getColorClass(value: number): string {
-    if (value >= 0) {
-      const greenTone = Math.min(Math.ceil(value / 0.04), 5); // 0.04 è il passo per le tonalità verdi
-      return `green-${greenTone}`;
-    } else {
-      const redTone = Math.min(Math.ceil(Math.abs(value) / 0.04), 5); // 0.04 è il passo per le tonalità rosse
-      return `red-${redTone}`;
-    }
-  }
+  const currentYear = new Date().getFullYear();
 
   return (
     <tbody>
       {Array.from(tableData.entries()).map(([year, monthlyReturns], index) => (
-        <tr key={index}>
-          <td className="bg-slate-100 px-6 py-4 text-sm font-medium text-gray-900 ">
+        <tr key={index} className="table-row bg-slate-100">
+          <td
+            className={`px-3 py-4 text-center text-sm font-medium text-gray-900 ${
+              year === currentYear ? "rounded-bl-lg" : ""
+            } `}
+          >
             {year}
           </td>
-          {monthlyReturns.map((returnValue, monthIndex) => (
+          {monthlyReturns.map((returnValue, monthIndex, array) => (
             <td
               key={monthIndex}
-              className={`whitespace-nowrap bg-slate-100 px-6 py-4 text-sm font-medium ${
-                returnValue > 0 ? "text-green-500" : "text-red-600"
+              className={`whitespace-nowrap  px-5 py-2 text-center text-sm font-medium ${
+                returnValue > 0 ? "text-lightGreen" : "text-lightRed"
+              } ${
+                monthIndex === array.length - 1 && year === currentYear
+                  ? "rounded-br-lg"
+                  : ""
               }`}
             >
               {returnValue.toFixed(2)}%{" "}

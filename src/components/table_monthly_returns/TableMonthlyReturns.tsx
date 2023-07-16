@@ -8,9 +8,6 @@ function TableMonthlyReturns({
   columns: String[];
   data: Map<number, number[]>;
 }) {
-  console.log(columns);
-  console.log(data);
-
   return (
     <>
       {data !== null && (

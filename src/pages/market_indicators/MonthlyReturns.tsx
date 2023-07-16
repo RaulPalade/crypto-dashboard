@@ -46,58 +46,66 @@ function MonthlyReturns() {
       );
 
       setBitcointReturns(data);
-      let returns = getMonthlyReturns(data);
+      console.log(data);
+
+      let returns = calculateMonthlyReturns(data);
+      console.log(returns);
+
       setTableData(returns);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Funzione per ottenere la mappa dei rendimenti mensili (in percentuale) per ogni anno
-  function getMonthlyReturns(data: ChartData): Map<number, number[]> {
-    // Verifica che il numero di valori e di etichette sia lo stesso
-    if (data.values.length !== data.labels.length) {
-      throw new Error("Numero di valori e etichette diversi");
-    }
+  function calculateMonthlyReturn(
+    currentValue: number,
+    previousValue: number
+  ): number {
+    return ((currentValue - previousValue) / previousValue) * 100;
+  }
 
-    // Mappa per contenere i rendimenti mensili (in percentuale) per ogni anno
-    const yearlyReturnsMap: Map<number, number[]> = new Map();
+  function calculateMonthlyReturns(data: ChartData): Map<number, number[]> {
+    const monthlyReturnsMap: Map<number, number[]> = new Map();
+    const groupedData: { [year: number]: { [month: number]: number[] } } = {};
 
-    // Ciclo attraverso i dati forniti
-    for (let i = 1; i < data.labels.length; i++) {
-      const currentLabel = data.labels[i];
-      const currentValue = data.values[i];
-      const prevLabel = data.labels[i - 1];
-      const prevValue = data.values[i - 1];
+    for (let i = 0; i < data.labels.length; i++) {
+      const labelParts = data.labels[i].split("/");
+      const year = parseInt(labelParts[2], 10);
+      const month = parseInt(labelParts[1], 10);
+      const value = data.values[i];
 
-      // Analizza le date dalle etichette correnti e precedenti
-      const [currentDay, currentMonth, currentYear] = currentLabel
-        .split("/")
-        .map(Number);
-      const [prevDay, prevMonth, prevYear] = prevLabel.split("/").map(Number);
-
-      // Verifica se l'anno è lo stesso tra le etichette correnti e precedenti
-      const isSameYear = currentYear === prevYear;
-
-      // Verifica se il mese è cambiato rispetto al mese precedente
-      const isSameMonth = currentMonth === prevMonth;
-
-      // Calcola il rendimento mensile come percentuale tra l'ultimo giorno del mese corrente
-      // e l'ultimo giorno del mese precedente
-      if (isSameYear && !isSameMonth) {
-        const lastDayOfMonth = new Date(currentYear, currentMonth, 0).getDate();
-        const monthlyReturn = ((currentValue - prevValue) / prevValue) * 100;
-
-        // Verifica se l'anno esiste nella mappa e aggiungi il rendimento mensile per il mese corrente
-        if (yearlyReturnsMap.has(currentYear)) {
-          yearlyReturnsMap.get(currentYear)!.push(monthlyReturn);
-        } else {
-          yearlyReturnsMap.set(currentYear, [monthlyReturn]);
-        }
+      if (!groupedData[year]) {
+        groupedData[year] = {};
       }
+
+      if (!groupedData[year][month]) {
+        groupedData[year][month] = [];
+      }
+
+      groupedData[year][month].push(value);
     }
 
-    return yearlyReturnsMap;
+    for (const year in groupedData) {
+      const monthlyReturns: number[] = [];
+
+      for (let month = 1; month <= 12; month++) {
+        const values = groupedData[year][month];
+        let monthlyReturn = 0;
+
+        if (values && values.length > 1) {
+          for (let i = 1; i < values.length; i++) {
+            monthlyReturn += calculateMonthlyReturn(values[i], values[i - 1]);
+          }
+          monthlyReturn /= values.length - 1;
+        }
+
+        monthlyReturns.push(monthlyReturn);
+      }
+
+      monthlyReturnsMap.set(parseInt(year, 10), monthlyReturns);
+    }
+
+    return monthlyReturnsMap;
   }
 
   return (
