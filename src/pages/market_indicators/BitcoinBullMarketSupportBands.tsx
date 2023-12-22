@@ -143,26 +143,29 @@ function BitcoinBullMarketSupportBands() {
   return (
     <section className="home-section">
       <div className="home-content flex flex-col items-start p-8">
-        <Header text="2-Year MA Multiplier" />
+        <Header text="BTC Bull Market Support Bands" />
         <div className="mt-8 flex flex-col lg:flex-row">
           <div className="mb-5 lg:mr-6 lg:mb-0 lg:w-1/3">
             <Description
               text={
                 <>
-                  The 2-Year MA Multiplier is a tool that helps with long-term
-                  investment in Bitcoin. It shows periods when buying or selling
-                  Bitcoin would have been a good idea based on past performance.
+                  Bitcoin Bull Market Support Bands are a technical analysis
+                  tool used to identify potential support levels during a
+                  bullish phase of the Bitcoin market. These bands are created
+                  by plotting multiple moving averages at different periods,
+                  such as 50-day, 100-day, and 200-day moving averages, and are
+                  often combined with other indicators.
                   <br></br>
-                  To do this, it uses a moving average line (MA) - in this case,
-                  the 2-year MA - and also multiplies that line by 5. <br></br>
                   <br></br>
-                  It's important to note that this multiplication is applied to
-                  the price values, not the time period, of the 2-year MA. In
-                  the past, buying Bitcoin when the price goes below the 2-year
-                  MA (green line) has typically resulted in above-average
-                  returns. On the other hand, selling Bitcoin when the price
-                  goes above the multiplied 2-year MA (red line) has
-                  historically been a good way to take profits.
+                  The Bull Market Support Bands provide visual zones on the
+                  chart that indicate potential areas where buying interest and
+                  price support may be present. Traders and investors use these
+                  bands to gauge the strength of the bullish trend and determine
+                  potential entry or exit points for their Bitcoin positions.
+                  <br></br>
+                  These bands can act as dynamic support levels during Bitcoin's
+                  upward moves, helping traders make informed decisions based on
+                  the prevailing market conditions.
                 </>
               }
             />

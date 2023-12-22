@@ -24,6 +24,8 @@ import BitcoinBalanceDistribution from './pages/bitcoin_basics/BitcoinBalanceDis
 // Market Indicators
 import RunningROI from './pages/market_indicators/RunningROI'
 import BitcoinBullMarketSupportBands from './pages/market_indicators/BitcoinBullMarketSupportBands'
+import LongTermMovingAverage from './pages/market_indicators/LongTermMovingAverage'
+import BtcPriceDrawdown from './pages/market_indicators/BTCPriceDrawdown'
 
 function App() {
   return (
@@ -76,6 +78,15 @@ function App() {
             element={<BitcoinBullMarketSupportBands />}
           />
 
+          <Route
+            path="/market-indicators/long-term-moving-average"
+            element={<LongTermMovingAverage />}
+          />
+
+          <Route
+            path="/market-indicators/drawdown-from-ath"
+            element={<BtcPriceDrawdown />}
+          />
           <Route path="/on-chain-indicators" element={<OnChainIndicators />} />
           <Route path="/economic-indicators" element={<EconomicIndicators />} />
           <Route path="/transactions" element={<Transactions />} />

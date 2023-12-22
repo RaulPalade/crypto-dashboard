@@ -170,10 +170,20 @@ function Sidebar() {
               </p>
             </li>
             <li>
-              <p>Long Term Moving Average</p>
+              <p
+                onClick={() =>
+                  navigate('/market-indicators/long-term-moving-average')
+                }
+              >
+                Long Term Moving Average
+              </p>
             </li>
             <li>
-              <p>Price Drowdown From ATH</p>
+              <p
+                onClick={() => navigate('/market-indicators/drawdown-from-ath')}
+              >
+                Price Drowdown From ATH
+              </p>
             </li>
           </ul>
         </li>

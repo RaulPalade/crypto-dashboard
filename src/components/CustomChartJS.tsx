@@ -1,72 +1,73 @@
-import "chart.js/auto";
-import { ChartDataset, Chart as ChartJS } from "chart.js";
-import { Chart } from "react-chartjs-2";
-import zoomPlugin from "chartjs-plugin-zoom";
-import annotationPlugin from "chartjs-plugin-annotation";
+import 'chart.js/auto'
+import { ChartDataset, Chart as ChartJS } from 'chart.js'
+import { Chart } from 'react-chartjs-2'
+import zoomPlugin from 'chartjs-plugin-zoom'
+import annotationPlugin from 'chartjs-plugin-annotation'
 
-ChartJS.register(zoomPlugin);
-ChartJS.register(annotationPlugin);
+ChartJS.register(zoomPlugin)
+ChartJS.register(annotationPlugin)
 
 type ChartMultipleLines = { labels: string[] } & {
-  datasets: ChartDataset[];
+  datasets: ChartDataset[]
 } & {
-  config: ChartConfig;
-};
+  config: ChartConfig
+}
 export interface ChartData {
-  values: number[];
-  labels: string[];
-  legendLabel: string;
+  values: number[]
+  labels: string[]
+  legendLabel: string
 }
 
 export interface ChartConfig {
-  type: any;
-  scale: any;
-  annotations?: any[];
+  type: any
+  scale: any
+  annotations?: any[]
+  doubleYAxis?: boolean
 }
-const numberOfYearToShow = 16;
+const numberOfYearToShow = 16
 
 function CustomChartJS(props: ChartMultipleLines) {
   const chartData = {
     labels: props.labels,
     datasets: props.datasets,
-  };
+  }
   return (
     <Chart
       type={props.config.type}
       data={chartData}
       options={{
         parsing: {
-          xAxisKey: "customDataset.xAxis",
-          yAxisKey: "customDataset.yAxis",
+          xAxisKey: 'customDataset.xAxis',
+          yAxisKey: 'customDataset.yAxis',
         },
         responsive: true,
         plugins: {
           tooltip: {
             callbacks: {
               label: function (t: any) {
-                if (props.config.type === "pie") {
-                  return t.formattedValue;
+                if (props.config.type === 'pie') {
+                  return t.formattedValue
                 }
                 if (t.raw.customDataset === undefined) {
-                  return `${t.dataset.label}: $${t.formattedValue}`;
+                  return `${t.dataset.label}: $${t.formattedValue}`
                 }
-                return `${t.raw.customDataset.label}`; // return a string that you wish to append
+                return `${t.raw.customDataset.label}` // return a string that you wish to append
               },
             },
           },
           zoom: {
             zoom: {
               wheel: {
-                enabled: props.config.type !== "pie",
+                enabled: props.config.type !== 'pie',
                 speed: 0.1,
               },
               drag: {
-                enabled: props.config.type !== "pie",
+                enabled: props.config.type !== 'pie',
               },
               pinch: {
-                enabled: props.config.type !== "pie",
+                enabled: props.config.type !== 'pie',
               },
-              mode: "xy",
+              mode: 'xy',
             },
           },
           legend: { display: true },
@@ -77,9 +78,9 @@ function CustomChartJS(props: ChartMultipleLines) {
         },
         scales: {
           x: {
-            display: props.config.type !== "pie",
+            display: props.config.type !== 'pie',
             grid: {
-              display: props.config.type !== "pie",
+              display: props.config.type !== 'pie',
             },
             ticks: {
               autoSkip: true,
@@ -88,20 +89,38 @@ function CustomChartJS(props: ChartMultipleLines) {
           },
 
           y: {
-            display: props.config.type !== "pie",
+            display: props.config.type !== 'pie',
             type: props.config.scale,
             grid: {
-              display: props.config.type !== "pie",
+              display: props.config.type !== 'pie',
             },
             ticks: {
               autoSkip: true,
               maxTicksLimit: 10,
             },
           },
+          y1:
+            props.config.doubleYAxis === true
+              ? {
+                  display: props.config.type !== 'pie',
+                  type: props.config.scale,
+                  position: 'right',
+                  beginAtZero: true,
+                  reverse: true,
+                  grid: {
+                    display: props.config.type !== 'pie',
+                  },
+
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 10,
+                  },
+                }
+              : null,
         },
       }}
     />
-  );
+  )
 }
 
-export default CustomChartJS;
+export default CustomChartJS
