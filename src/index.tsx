@@ -9,6 +9,7 @@ import "./style/modal_coin_list.css";
 import "./style/arbitrage_card.css";
 import "./style/mining_card.css";
 import "./style/style_news.css";
+import "./style/monthly_return_colors.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(

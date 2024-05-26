@@ -107,6 +107,10 @@ function RunningROI() {
           ),
         };
 
+        if (currentCoin.coinName == "Bitcoin") {
+          console.log(currentCoin);
+        }
+
         let dataset = {
           label: `${coinName} price`,
           data: data.values,

@@ -1,0 +1,41 @@
+/* Tonalità di verde con luminosità incrementata (più chiare) */
+.green-1 {
+  background-color: #f0f6f3; /* Verde più chiaro */
+}
+
+.green-2 {
+  background-color: #e0edd9;
+}
+
+.green-3 {
+  background-color: #d1e6c6;
+}
+
+.green-4 {
+  background-color: #b2dca5;
+}
+
+.green-5 {
+  background-color: #8ed67f; /* Verde più scuro */
+}
+
+/* Tonalità di rosso con luminosità decrementata (più chiare) */
+.red-1 {
+  background-color: #f9f3f3; /* Rosso più chiaro */
+}
+
+.red-2 {
+  background-color: #f2e3e3;
+}
+
+.red-3 {
+  background-color: #ebd2d2;
+}
+
+.red-4 {
+  background-color: #e1b2b2;
+}
+
+.red-5 {
+  background-color: #d68787; /* Rosso più scuro */
+}

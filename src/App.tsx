@@ -1,31 +1,32 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
-import Sidebar from './components/Sidebar'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Sidebar from "./components/Sidebar";
 
-import Home from './pages/Home'
-import BitcoinBasics from './pages/BitcoinBasics'
-import MarketIndicators from './pages/MarketIndicators'
-import EconomicIndicators from './pages/EconomicIndicators'
-import Transactions from './pages/Transactions'
-import Mining from './pages/Mining'
-import Arbitrage from './pages/Arbitrage'
-import News from './pages/News'
-import Settings from './pages/Settings'
-import OnChainIndicators from './pages/OnChainIndicators'
-import Bitcoin2YearMa from './pages/bitcoin_basics/Bitcoin2YearMA'
-import Bitcoin200WeekMAHeatmap from './pages/bitcoin_basics/Bitcoin200WeekMAHeatmap'
-import BitcoinFearAndGreedIndex from './pages/bitcoin_basics/BitcoinFearAndGreedIndex'
-import BitcoinPiCycleTop from './pages/bitcoin_basics/BitcoinPiCycleTop'
-import BitcoinRainbowChart from './pages/bitcoin_basics/BitcoinRainbowChart'
-import BitcoinSupply from './pages/bitcoin_basics/BitcoinSupply'
-import BitcoinHalving from './pages/bitcoin_basics/BitcoinHalving'
-import BitcoinBalanceDistribution from './pages/bitcoin_basics/BitcoinBalanceDistribution'
+import Home from "./pages/Home";
+import BitcoinBasics from "./pages/BitcoinBasics";
+import MarketIndicators from "./pages/MarketIndicators";
+import EconomicIndicators from "./pages/EconomicIndicators";
+import Transactions from "./pages/Transactions";
+import Mining from "./pages/Mining";
+import Arbitrage from "./pages/Arbitrage";
+import News from "./pages/News";
+import Settings from "./pages/Settings";
+import OnChainIndicators from "./pages/OnChainIndicators";
+import Bitcoin2YearMa from "./pages/bitcoin_basics/Bitcoin2YearMA";
+import Bitcoin200WeekMAHeatmap from "./pages/bitcoin_basics/Bitcoin200WeekMAHeatmap";
+import BitcoinFearAndGreedIndex from "./pages/bitcoin_basics/BitcoinFearAndGreedIndex";
+import BitcoinPiCycleTop from "./pages/bitcoin_basics/BitcoinPiCycleTop";
+import BitcoinRainbowChart from "./pages/bitcoin_basics/BitcoinRainbowChart";
+import BitcoinSupply from "./pages/bitcoin_basics/BitcoinSupply";
+import BitcoinHalving from "./pages/bitcoin_basics/BitcoinHalving";
+import BitcoinBalanceDistribution from "./pages/bitcoin_basics/BitcoinBalanceDistribution";
 
 // Market Indicators
-import RunningROI from './pages/market_indicators/RunningROI'
-import BitcoinBullMarketSupportBands from './pages/market_indicators/BitcoinBullMarketSupportBands'
-import LongTermMovingAverage from './pages/market_indicators/LongTermMovingAverage'
-import BtcPriceDrawdown from './pages/market_indicators/BTCPriceDrawdown'
+import RunningROI from "./pages/market_indicators/RunningROI";
+import BitcoinBullMarketSupportBands from "./pages/market_indicators/BitcoinBullMarketSupportBands";
+import MonthlyReturns from "./pages/market_indicators/MonthlyReturns";
+import LongTermMovingAverage from "./pages/market_indicators/LongTermMovingAverage";
+import BtcPriceDrawdown from "./pages/market_indicators/BTCPriceDrawdown";
 
 function App() {
   return (
@@ -79,6 +80,11 @@ function App() {
           />
 
           <Route
+            path="/market-indicators/monthly-returns"
+            element={<MonthlyReturns />}
+          />
+
+          <Route
             path="/market-indicators/long-term-moving-average"
             element={<LongTermMovingAverage />}
           />
@@ -97,7 +103,7 @@ function App() {
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
