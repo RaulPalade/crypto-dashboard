@@ -174,7 +174,7 @@ function Sidebar() {
             <li>
               <p
                 onClick={() =>
-                  navigate('/market-indicators/long-term-moving-average')
+                  navigate("/market-indicators/long-term-moving-average")
                 }
               >
                 Long Term Moving Average
@@ -182,7 +182,7 @@ function Sidebar() {
             </li>
             <li>
               <p
-                onClick={() => navigate('/market-indicators/drawdown-from-ath')}
+                onClick={() => navigate("/market-indicators/drawdown-from-ath")}
               >
                 Price Drowdown From ATH
               </p>
@@ -341,19 +341,6 @@ function Sidebar() {
           <ul className="sub-menu blank">
             <li>
               <p className="link_name">News</p>
-            </li>
-          </ul>
-        </li>
-        <li className={pathMatchRoute("/settings") ? "active" : "notActive"}>
-          <p onClick={() => navigate("/settings")}>
-            <i>
-              <FiSettings size={28} />
-            </i>
-            <span className="link_name">Setting</span>
-          </p>
-          <ul className="sub-menu blank">
-            <li>
-              <p className="link_name">Setting</p>
             </li>
           </ul>
         </li>

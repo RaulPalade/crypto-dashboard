@@ -133,10 +133,10 @@ function BitcoinRainbowChart() {
   }
   return (
     <section className="home-section">
-      <div className="home-content flex flex-col items-start p-8">
-        <Header text="Bitcoin Rainbow Chart" />
-        <div className="mt-8 flex flex-col lg:flex-row">
-          <div className="mb-5 lg:mr-6 lg:mb-0 lg:w-1/3">
+      <div className="home-content flex w-full flex-col">
+        <div>
+          <div className="space-y-6">
+            <Header text="Bitcoin Rainbow Chart" />
             <Description
               text={
                 <>
@@ -164,7 +164,7 @@ function BitcoinRainbowChart() {
               }
             />
           </div>
-          <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
+          <div className="mt-10">
             <ChartCard>
               <ChartOnlyScaleOptionContainer
                 type="line"

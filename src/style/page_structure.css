@@ -4,7 +4,7 @@
   left: 340px;
   width: calc(100% - 340px);
   transition: all 0.5s ease;
-  padding: 12px;
+  padding: 48px;
 }
 .sidebar.close ~ .home-section {
   left: 78px;

@@ -4,8 +4,8 @@ export interface Props {
 
 function Header(props: Props) {
   return (
-    <div className="w-full text-5xl text-white">
-      <h1>{props.text}</h1>
+    <div className="w-full text-5xl font-bold text-white">
+      <p>{props.text}</p>
     </div>
   );
 }

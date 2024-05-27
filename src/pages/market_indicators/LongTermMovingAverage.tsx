@@ -1,118 +1,119 @@
-import { useState, useEffect } from 'react'
-import CryptoCompareApi from '../../api/CryptoCompareApi'
-import ChartCard from '../../components/ChartCard'
-import Description from '../../components/Description'
-import Header from '../../components/Header'
-import ChartNoDropdownsContainer from '../../components/ChartNoDropdownsContainer'
-import { ChartDataset } from 'chart.js'
-import { ChartData } from '../../components/CustomChartJS'
+import { useState, useEffect } from "react";
+import CryptoCompareApi from "../../api/CryptoCompareApi";
+import ChartCard from "../../components/ChartCard";
+import Description from "../../components/Description";
+import Header from "../../components/Header";
+import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
+import { ChartDataset } from "chart.js";
+import { ChartData } from "../../components/CustomChartJS";
 
 function LongTermMovingAverage() {
-  const [chartLabels, setChartLabels] = useState<string[]>([])
+  const [chartLabels, setChartLabels] = useState<string[]>([]);
 
   const [bitcoinPriceChart, setBitcoinPriceChart] = useState<ChartData>({
     values: [],
     labels: [],
-    legendLabel: '',
-  })
+    legendLabel: "",
+  });
   const [btcLongTermMovingAvg, setBtcLongTermMovingAvg] = useState<ChartData>({
     values: [],
     labels: [],
-    legendLabel: '',
-  })
+    legendLabel: "",
+  });
 
-  const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([])
+  const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
 
-  const [viewingOption, setViewingOption] = useState(0)
-
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const [viewingOption, setViewingOption] = useState(0);
 
   useEffect(() => {
-    createChartDatasets(bitcoinPriceChart, btcLongTermMovingAvg)
-  }, [viewingOption])
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    createChartDatasets(bitcoinPriceChart, btcLongTermMovingAvg);
+  }, [viewingOption]);
 
   function onViewingOptionChanged(value: number) {
-    setViewingOption(value)
+    setViewingOption(value);
   }
 
   const fetchData = async () => {
     try {
       const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
-        'BTC',
-        'USD',
+        "BTC",
+        "USD",
         1500,
-        2,
-      )
+        2
+      );
       const processedMovingAverage: ChartData = {
         values: calculateMovingAverage(data.values, 200),
         labels: data.labels,
-        legendLabel: '200 days MA',
-      }
+        legendLabel: "200 days MA",
+      };
 
-      setChartLabels(data.labels.slice(1000))
-      setBitcoinPriceChart(data)
-      setBtcLongTermMovingAvg(processedMovingAverage)
-      createChartDatasets(data, processedMovingAverage)
+      setChartLabels(data.labels.slice(1000));
+      setBitcoinPriceChart(data);
+      setBtcLongTermMovingAvg(processedMovingAverage);
+      createChartDatasets(data, processedMovingAverage);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   function calculateMovingAverage(prices: number[], windowSize: number) {
-    const movingAverages = []
-    let sum = 0
+    const movingAverages = [];
+    let sum = 0;
 
     for (let i = 0; i < prices.length; i++) {
-      sum += prices[i]
+      sum += prices[i];
 
       if (i >= windowSize) {
-        sum -= prices[i - windowSize]
-        const average = sum / windowSize
-        movingAverages.push(average)
+        sum -= prices[i - windowSize];
+        const average = sum / windowSize;
+        movingAverages.push(average);
       } else {
-        movingAverages.push(0)
+        movingAverages.push(0);
       }
     }
 
-    return movingAverages
+    return movingAverages;
   }
 
   function createChartDatasets(
     data: ChartData,
-    btcLongTermMovingAvg: ChartData,
+    btcLongTermMovingAvg: ChartData
   ) {
-    const datasets: ChartDataset[] = []
+    const datasets: ChartDataset[] = [];
     datasets.push({
-      label: 'BTC Price',
+      label: "BTC Price",
       data: data.values.slice(1000),
-      backgroundColor: 'rgba(30, 34, 45, 1)',
-      borderColor: 'rgba(30, 34, 45, 1)',
+      backgroundColor: "rgba(30, 34, 45, 1)",
+      borderColor: "rgba(30, 34, 45, 1)",
       borderWidth: 1,
-      pointBackgroundColor: '#fff',
+      pointBackgroundColor: "#fff",
       showLine: viewingOption === 0 || viewingOption === 2,
       pointRadius: viewingOption === 1 || viewingOption === 2 ? 1.5 : 0,
-    })
+    });
 
     datasets.push({
       label: btcLongTermMovingAvg.legendLabel,
       data: btcLongTermMovingAvg.values.slice(1000),
-      backgroundColor: 'rgba(41, 115, 115, 1)',
-      borderColor: 'rgba(41, 115, 115, 1)',
+      backgroundColor: "rgba(41, 115, 115, 1)",
+      borderColor: "rgba(41, 115, 115, 1)",
       borderWidth: 1,
-      pointBackgroundColor: '#fff',
+      pointBackgroundColor: "#fff",
       pointRadius: 0,
-    })
+    });
 
-    setChartDatasets(datasets)
+    setChartDatasets(datasets);
   }
   return (
     <section className="home-section">
-      <div className="home-content flex flex-col items-start p-8">
-        <Header text="BTC Long Term Moving Average" />
-        <div className="mt-8 flex flex-col lg:flex-row">
-          <div className="mb-5 lg:mr-6 lg:mb-0 lg:w-1/3">
+      <div className="home-content flex w-full flex-col">
+        <div>
+          <div className="space-y-6">
+            <Header text="BTC Long Term Moving Average" />
+
             <Description
               text={
                 <>
@@ -135,7 +136,7 @@ function LongTermMovingAverage() {
               }
             />
           </div>
-          <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
+          <div className="mt-10">
             <ChartCard>
               <ChartNoDropdownsContainer
                 type="line"
@@ -148,7 +149,7 @@ function LongTermMovingAverage() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default LongTermMovingAverage
+export default LongTermMovingAverage;

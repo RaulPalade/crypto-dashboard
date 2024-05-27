@@ -68,16 +68,15 @@ function BitcoinSupply() {
   }
   return (
     <section className="home-section">
-      <div className="home-content flex flex-col items-start p-8">
-        <Header text="Bitcoin Supply" />
-        <div className="mt-8 flex flex-col lg:flex-row">
-          <div className="mb-5 lg:mr-6 lg:mb-0 lg:w-1/2">
+      <div className="home-content flex w-full flex-col">
+        <div>
+          <div className="mr-11 space-y-6">
+            <Header text="Bitcoin Supply" />
             <Description
               text={
                 <>
                   <b>BTC On Exchanges:</b> Coins in Cold Storage from Huobi,
-                  Binance, BitMex, Bitfinex Coinbase & Co.<br></br>
-                  <br></br>
+                  Binance, BitMex, Bitfinex Coinbase & Co.
                   <b>Zombie Coins (Without Sathosi Stash):</b> Zombie Coins that
                   haven't moved since 2010. Excludes Satoshi Nakamoto's Coins.
                   <br></br>
@@ -131,7 +130,7 @@ function BitcoinSupply() {
               }
             />
           </div>
-          <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-1/2">
+          <div className="mt-10">
             <PieCard>
               <div className="pie-chart-container flex items-center justify-center">
                 <CustomChartJS

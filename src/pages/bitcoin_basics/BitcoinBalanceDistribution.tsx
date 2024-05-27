@@ -68,10 +68,11 @@ function BitcoinBalanceDistribution() {
   }
   return (
     <section className="home-section">
-      <div className="home-content flex flex-col items-start p-8">
-        <Header text="Bitcoin Balance Distribution" />
-        <div className="mt-8 flex flex-col lg:flex-row">
-          <div className="mb-5 lg:mr-6 lg:mb-0 lg:w-1/2">
+      <div className="home-content flex w-full flex-col">
+        <div>
+          <div className="space-y-6">
+            <Header text="Bitcoin Balance Distribution" />
+
             <Description
               text={
                 <>
@@ -100,7 +101,7 @@ function BitcoinBalanceDistribution() {
               }
             />
           </div>
-          <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-1/2">
+          <div className="mt-10">
             <PieCard>
               <div className="pie-chart-container flex items-center justify-center">
                 <CustomChartJS

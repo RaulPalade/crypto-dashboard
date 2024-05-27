@@ -1,113 +1,113 @@
-import { useState, useEffect } from 'react'
-import CryptoCompareApi from '../../api/CryptoCompareApi'
-import ChartCard from '../../components/ChartCard'
-import Description from '../../components/Description'
-import Header from '../../components/Header'
-import ChartNoDropdownsContainer from '../../components/ChartNoDropdownsContainer'
-import { ChartDataset } from 'chart.js'
-import { ChartData } from '../../components/CustomChartJS'
+import { useState, useEffect } from "react";
+import CryptoCompareApi from "../../api/CryptoCompareApi";
+import ChartCard from "../../components/ChartCard";
+import Description from "../../components/Description";
+import Header from "../../components/Header";
+import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
+import { ChartDataset } from "chart.js";
+import { ChartData } from "../../components/CustomChartJS";
 
 function BtcPriceDrawdown() {
-  const [chartLabels, setChartLabels] = useState<string[]>([])
+  const [chartLabels, setChartLabels] = useState<string[]>([]);
 
   const [bitcoinPriceChart, setBitcoinPriceChart] = useState<ChartData>({
     values: [],
     labels: [],
-    legendLabel: '',
-  })
+    legendLabel: "",
+  });
   const [btcPriceDrawdown, setBtcPriceDrawdown] = useState<ChartData>({
     values: [],
     labels: [],
-    legendLabel: '',
-  })
+    legendLabel: "",
+  });
 
-  const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([])
+  const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
 
-  const [viewingOption, setViewingOption] = useState(0)
-
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const [viewingOption, setViewingOption] = useState(0);
 
   useEffect(() => {
-    createChartDatasets(bitcoinPriceChart, btcPriceDrawdown)
-  }, [viewingOption])
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    createChartDatasets(bitcoinPriceChart, btcPriceDrawdown);
+  }, [viewingOption]);
 
   function onViewingOptionChanged(value: number) {
-    setViewingOption(value)
+    setViewingOption(value);
   }
 
   const fetchData = async () => {
     try {
       const data: ChartData = await CryptoCompareApi.getDailyPairOHLCV(
-        'BTC',
-        'USD',
+        "BTC",
+        "USD",
         1500,
-        2,
-      )
+        2
+      );
       const processedMovingAverage: ChartData = {
         values: calculateDrawdown(data.values),
         labels: data.labels,
-        legendLabel: 'Drawdown From ATH',
-      }
+        legendLabel: "Drawdown From ATH",
+      };
 
-      setChartLabels(data.labels.slice(1000))
-      setBitcoinPriceChart(data)
-      setBtcPriceDrawdown(processedMovingAverage)
-      createChartDatasets(data, processedMovingAverage)
+      setChartLabels(data.labels.slice(1000));
+      setBitcoinPriceChart(data);
+      setBtcPriceDrawdown(processedMovingAverage);
+      createChartDatasets(data, processedMovingAverage);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   function calculateDrawdown(prices: number[]) {
-    const drawdowns = []
-    let peak = prices[0]
+    const drawdowns = [];
+    let peak = prices[0];
 
     for (let i = 0; i < prices.length; i++) {
       if (prices[i] > peak) {
-        peak = prices[i]
+        peak = prices[i];
       }
 
-      const drawdown = ((peak - prices[i]) / peak) * 100
-      drawdowns.push(drawdown)
+      const drawdown = ((peak - prices[i]) / peak) * 100;
+      drawdowns.push(drawdown);
     }
 
-    return drawdowns
+    return drawdowns;
   }
 
   function createChartDatasets(data: ChartData, btcPriceDrawdown: ChartData) {
-    const datasets: ChartDataset[] = []
+    const datasets: ChartDataset[] = [];
     datasets.push({
-      label: 'BTC Price',
+      label: "BTC Price",
       data: data.values.slice(1000),
-      backgroundColor: 'rgba(30, 34, 45, 1)',
-      borderColor: 'rgba(30, 34, 45, 1)',
+      backgroundColor: "rgba(30, 34, 45, 1)",
+      borderColor: "rgba(30, 34, 45, 1)",
       borderWidth: 1,
-      pointBackgroundColor: '#fff',
+      pointBackgroundColor: "#fff",
       showLine: viewingOption === 0 || viewingOption === 2,
       pointRadius: viewingOption === 1 || viewingOption === 2 ? 1.5 : 0,
-    })
+    });
 
     datasets.push({
       label: btcPriceDrawdown.legendLabel,
       data: btcPriceDrawdown.values.slice(1000),
-      backgroundColor: 'rgba(41, 115, 115, 1)',
-      borderColor: 'rgba(41, 115, 115, 1)',
+      backgroundColor: "rgba(41, 115, 115, 1)",
+      borderColor: "rgba(41, 115, 115, 1)",
       borderWidth: 1,
-      pointBackgroundColor: '#fff',
+      pointBackgroundColor: "#fff",
       pointRadius: 0,
       fill: true,
-    })
+    });
 
-    setChartDatasets(datasets)
+    setChartDatasets(datasets);
   }
   return (
     <section className="home-section">
-      <div className="home-content flex flex-col items-start p-8">
-        <Header text="BTC Price Drawdown From ATH" />
-        <div className="mt-8 flex flex-col lg:flex-row">
-          <div className="mb-5 lg:mr-6 lg:mb-0 lg:w-1/3">
+      <div className="home-content flex w-full flex-col">
+        <div>
+          <div className="space-y-6">
+            <Header text="BTC Price Drawdown From ATH" />
             <Description
               text={
                 <>
@@ -130,7 +130,7 @@ function BtcPriceDrawdown() {
               }
             />
           </div>
-          <div className="lg:flex-grow-3 mt-5 lg:ml-6 lg:mt-0 lg:w-2/3">
+          <div className="mt-10">
             <ChartCard>
               <ChartNoDropdownsContainer
                 type="line"
@@ -144,7 +144,7 @@ function BtcPriceDrawdown() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default BtcPriceDrawdown
+export default BtcPriceDrawdown;
