@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import CryptoCompareApi from "../../api/CryptoCompareApi";
-import ChartCard from "../../components/ChartCard";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
-import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
-import { ChartDataset, Colors } from "chart.js";
+import { ChartDataset } from "chart.js";
 import CustomChartJS, { ChartData } from "../../components/CustomChartJS";
-import ChartOnlyScaleOptionContainer from "../../components/ChartOnlyScaleOptionContainer";
 import PieCard from "../../components/PieCard";
 
 function BitcoinBalanceDistribution() {

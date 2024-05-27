@@ -3,7 +3,6 @@ import CryptoCompareApi from "../../api/CryptoCompareApi";
 import ChartCard from "../../components/ChartCard";
 import Description from "../../components/Description";
 import Header from "../../components/Header";
-import ChartNoDropdownsContainer from "../../components/ChartNoDropdownsContainer";
 import { ChartDataset } from "chart.js";
 import { ChartData } from "../../components/CustomChartJS";
 import ChartOnlyScaleOptionContainer from "../../components/ChartOnlyScaleOptionContainer";

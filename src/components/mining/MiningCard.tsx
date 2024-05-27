@@ -1,5 +1,3 @@
-import Bitcoin from "../../assets/coin-icons/bitcoin.svg";
-
 export interface MiningInfo {
   logo: any;
   name: string;
