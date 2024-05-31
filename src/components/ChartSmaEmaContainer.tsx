@@ -1,6 +1,8 @@
 import { ChartDataset } from "chart.js";
 import { useEffect, useState } from "react";
-import CustomChartJS, { ChartData } from "./CustomChartJS";
+import CustomChartJS from "./CustomChartJS";
+import chartAnimation from "../assets/lottie/chartAnimation.json";
+import Lottie from "react-lottie";
 
 type ChartSmaEmaContainerProps = { type: any } & { labels: string[] } & {
   datasets: ChartDataset[];
@@ -12,10 +14,33 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
 
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
 
+  const [chartLoading, setChartLoading] = useState<boolean>(true);
+
   useEffect(() => {
     setChartLabels(props.labels);
     setChartDatasets(props.datasets);
+    setTimeout(() => {
+      setChartLoading(false);
+    }, 1000);
   }, [props.labels, props.datasets]);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: chartAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  if (chartLoading) {
+    return (
+      <div>
+        <Lottie options={defaultOptions} height={400} width={400} />
+        <p className="text-2xl font-bold text-violet-950">Loading Chart...</p>
+      </div>
+    );
+  }
 
   const filterSMA = (smaPeriod: number) => {
     // Reset the other dropdown
@@ -96,7 +121,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
           <button
             type="button"
             onClick={() => setViewOption(0)}
-            className={`focus:ring-blue-70 rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100  ease-in-out md:rounded-l-lg md:rounded-r-none ${
+            className={`focus:ring-blue-70 rounded-t-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium transition delay-100  ease-in-out md:rounded-l-lg md:rounded-r-none ${
               viewOption === 0 ? "bg-lightViolet text-white" : ""
             }`}
           >
@@ -105,7 +130,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
           <button
             type="button"
             onClick={() => setViewOption(1)}
-            className={`border-t border-b border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out ${
+            className={`border-b border-t border-gray-200 bg-white px-3 py-2 text-sm font-medium transition delay-100 ease-in-out ${
               viewOption === 1 ? "bg-lightViolet text-white" : ""
             }`}
           >
@@ -114,7 +139,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
           <button
             type="button"
             onClick={() => setViewOption(2)}
-            className={`rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-r-md md:rounded-l-none ${
+            className={`rounded-b-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium transition delay-100 ease-in-out md:rounded-l-none md:rounded-r-md ${
               viewOption === 2 ? "bg-lightViolet text-white  " : ""
             }`}
           >
@@ -135,7 +160,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
               setScaleOption(0);
             }}
             type="button"
-            className={`rounded-t-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-l-lg md:rounded-r-none ${
+            className={`rounded-t-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium transition delay-100 ease-in-out md:rounded-l-lg md:rounded-r-none ${
               scaleOption === 0 ? "bg-lightViolet text-white" : ""
             }`}
           >
@@ -146,7 +171,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
               setScaleOption(1);
             }}
             type="button"
-            className={`rounded-b-lg border border-gray-200 bg-white py-2 px-3 text-sm font-medium transition delay-100 ease-in-out md:rounded-r-md md:rounded-l-none ${
+            className={`rounded-b-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium transition delay-100 ease-in-out md:rounded-l-none md:rounded-r-md ${
               scaleOption === 1 ? "bg-lightViolet text-white" : ""
             }`}
           >
@@ -154,7 +179,7 @@ function ChartSmaEmaContainer(props: ChartSmaEmaContainerProps) {
           </button>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center space-y-2 text-center md:flex-row md:space-y-0 md:space-x-4">
+      <div className="flex flex-col items-center justify-center space-y-2 text-center md:flex-row md:space-x-4 md:space-y-0">
         <div className="sma-list">
           <div className="flex flex-col items-center">
             <label className="mb-2 block text-sm font-medium text-gray-900">

@@ -77,8 +77,9 @@ function BitcoinSupply() {
                 <>
                   <b>BTC On Exchanges:</b> Coins in Cold Storage from Huobi,
                   Binance, BitMex, Bitfinex Coinbase & Co.
-                  <b>Zombie Coins (Without Sathosi Stash):</b> Zombie Coins that
-                  haven't moved since 2010. Excludes Satoshi Nakamoto's Coins.
+                  <b> Zombie Coins (Without Sathosi Stash):</b> Zombie Coins
+                  that haven't moved since 2010. Excludes Satoshi Nakamoto's
+                  Coins.
                   <br></br>
                   <br></br>
                   <b>BTC Owned By Satoshi Nakamoto:</b> The amount of Bitcoin

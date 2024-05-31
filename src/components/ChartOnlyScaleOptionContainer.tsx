@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ChartDataset } from "chart.js";
 import CustomChartJS from "./CustomChartJS";
+import chartAnimation from "../assets/lottie/chartAnimation.json";
+import Lottie from "react-lottie";
 
 type ChartOnlyScaleOptionContainerProps = { type: any } & {
   labels: string[];
@@ -14,10 +16,33 @@ function ChartOnlyScaleOptionContainer(
   const [chartLabels, setChartLabels] = useState<string[]>([]);
   const [chartDatasets, setChartDatasets] = useState<ChartDataset[]>([]);
 
+  const [chartLoading, setChartLoading] = useState<boolean>(true);
+
   useEffect(() => {
     setChartLabels(props.labels);
     setChartDatasets(props.datasets);
+    setTimeout(() => {
+      setChartLoading(false);
+    }, 1000);
   }, [props.labels, props.datasets]);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: chartAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  if (chartLoading) {
+    return (
+      <div>
+        <Lottie options={defaultOptions} height={400} width={400} />
+        <p className="text-2xl font-bold text-violet-950">Loading Chart...</p>
+      </div>
+    );
+  }
 
   return (
     <>
